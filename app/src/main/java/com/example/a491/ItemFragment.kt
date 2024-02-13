@@ -62,7 +62,7 @@ class ItemFragment: Fragment(), OnListFragmentInteractionListener {
         val models : List<Item> = gson.fromJson(itemsRawJSON, arrayMovieType)
 
         // Update Item Recycler View
-        recyclerView.adapter = ItemRecyclerViewAdapter(models, this@ItemFragment)
+        recyclerView.adapter = ItemRecyclerViewAdapter(models)
 
         Log.d("Rapid Delivery Rentals - Item Fragment", "response successful")
 

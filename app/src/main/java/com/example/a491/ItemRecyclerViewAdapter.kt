@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class ItemRecyclerViewAdapter(
-    private val items: List<Item>,
-    private val mListener: OnListFragmentInteractionListener?
+    private val items: List<Item>
+    //private val mListener: OnListFragmentInteractionListener?
     )
     : RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -53,9 +53,7 @@ class ItemRecyclerViewAdapter(
             .into(holder.mItemImage)
 
         holder.mView.setOnClickListener {
-            holder.mItem?.let { item ->
-                mListener?.onItemClick(item)
-            }
+            //TODO: open item page
         }
     }
 
