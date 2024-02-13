@@ -20,7 +20,7 @@
         android:text="@string/itemtitle"
         android:textSize="24sp"
         android:textStyle="bold"
-        style="@style/rapidDeliveryTheme"
+        style="@style/rapidRentalsTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemImage" />
 
@@ -31,7 +31,7 @@
         android:text="@string/itemprice"
         android:textSize="20sp"
         android:textStyle="bold"
-        style="@style/rapidDeliveryTheme"
+        style="@style/rapidRentalsTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemTitle" />
 
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:text="@string/itemdesc"
         android:textSize="16sp"
-        style="@style/rapidDeliveryTheme"
+        style="@style/rapidRentalsTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemPrice"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

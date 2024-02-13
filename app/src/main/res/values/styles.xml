@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="rapidDeliveryText">
+    <style name="rapidRentalsText">
         <item name="android:textColor">@color/black</item>
-<!--        <item name="android:fontFamily">@font/lato</item>-->
+        <!--        <item name="android:fontFamily">@font/lato</item>-->
     </style>
-    <style name="rapidDeliveryTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="rapidRentalsTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
     </style>
