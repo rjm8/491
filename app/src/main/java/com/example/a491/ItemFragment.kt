@@ -1,4 +1,4 @@
-package com.example.rapiddeliveryrentals
+package com.example.a491
 
 import android.os.Bundle
 import android.util.Log

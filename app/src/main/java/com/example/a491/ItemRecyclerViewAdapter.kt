@@ -1,4 +1,4 @@
-package com.example.rapiddeliveryrentals
+package com.example.a491
 
 import android.content.res.Configuration
 import android.provider.ContactsContract.CommonDataKinds.Im

@@ -1,4 +1,4 @@
-package com.example.rapiddeliveryrentals
+package com.example.a491
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

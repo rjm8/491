@@ -1,4 +1,4 @@
-package com.example.rapiddeliveryrentals
+package com.example.a491
 
 import com.google.gson.annotations.SerializedName
 
