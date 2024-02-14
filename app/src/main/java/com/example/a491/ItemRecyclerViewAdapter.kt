@@ -25,8 +25,7 @@ class ItemRecyclerViewAdapter(
     }
 
     /* Refer and Access each View Element */
-    inner class ItemViewHolder(val mView: View) : RecyclerView.ViewHolder(mView),
-        View.OnClickListener {
+    inner class ItemViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         var mItem: Item? = null
         val mItemImage: ImageView = mView.findViewById<ImageView>(R.id.itemImage)
         val mItemTitle: TextView = mView.findViewById<TextView>(R.id.itemTitle)
@@ -36,13 +35,7 @@ class ItemRecyclerViewAdapter(
         override fun toString(): String {
             return mItemTitle.toString() + " '" + mItemDesc.text + "'"
         }*/
-        override fun onClick(v: View?) {
-            val item = items[adapterPosition]
-            val intent = Intent(context, ItemDetail::class.java)
-            intent.putExtra(ITEM_EXTRA, item)
 
-
-        }
     }
 
     /* Binds Views in the ViewHolder with the Data obtained */
@@ -65,6 +58,9 @@ class ItemRecyclerViewAdapter(
 
         holder.mView.setOnClickListener {
             //TODO: open item page
+            val intent = Intent(context, ItemDetail::class.java)
+            intent.putExtra(ITEM_EXTRA, item)
+            context.startActivity(intent)
         }
     }
 
