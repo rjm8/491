@@ -1,15 +1,20 @@
 package com.example.a491
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
+const val ITEM_EXTRA = "ITEM_EXTRA"
 class ItemRecyclerViewAdapter(
-    private val items: List<Item>
+    private val items: List<Item>,
+    private val context: Context
     //private val mListener: OnListFragmentInteractionListener?
     )
     : RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemViewHolder>() {
@@ -30,6 +35,7 @@ class ItemRecyclerViewAdapter(
         override fun toString(): String {
             return mItemTitle.toString() + " '" + mItemDesc.text + "'"
         }*/
+
     }
 
     /* Binds Views in the ViewHolder with the Data obtained */
@@ -52,6 +58,9 @@ class ItemRecyclerViewAdapter(
 
         holder.mView.setOnClickListener {
             //TODO: open item page
+            val intent = Intent(context, ItemDetail::class.java)
+            intent.putExtra(ITEM_EXTRA, item)
+            context.startActivity(intent)
         }
     }
 
