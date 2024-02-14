@@ -3,6 +3,7 @@
     <string name="itemtitle">itemTitle</string>
     <string name="itemprice">itemPrice</string>
     <string name="itemdesc">itemDesc</string>
+    <string name="buy">Buy</string>
 
     <!-- Menu -->
     <string name="open_category_menu">Open</string>
