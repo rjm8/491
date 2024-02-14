@@ -1,15 +1,20 @@
 package com.example.a491
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
+const val ITEM_EXTRA = "ITEM_EXTRA"
 class ItemRecyclerViewAdapter(
-    private val items: List<Item>
+    private val items: List<Item>,
+    private val context: Context
     //private val mListener: OnListFragmentInteractionListener?
     )
     : RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemViewHolder>() {
@@ -20,7 +25,8 @@ class ItemRecyclerViewAdapter(
     }
 
     /* Refer and Access each View Element */
-    inner class ItemViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class ItemViewHolder(val mView: View) : RecyclerView.ViewHolder(mView),
+        View.OnClickListener {
         var mItem: Item? = null
         val mItemImage: ImageView = mView.findViewById<ImageView>(R.id.itemImage)
         val mItemTitle: TextView = mView.findViewById<TextView>(R.id.itemTitle)
@@ -30,6 +36,13 @@ class ItemRecyclerViewAdapter(
         override fun toString(): String {
             return mItemTitle.toString() + " '" + mItemDesc.text + "'"
         }*/
+        override fun onClick(v: View?) {
+            val item = items[adapterPosition]
+            val intent = Intent(context, ItemDetail::class.java)
+            intent.putExtra(ITEM_EXTRA, item)
+
+
+        }
     }
 
     /* Binds Views in the ViewHolder with the Data obtained */

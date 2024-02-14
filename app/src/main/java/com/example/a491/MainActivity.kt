@@ -1,6 +1,7 @@
 package com.example.a491
 
 // Menu Imports
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val recycler = findViewById<RecyclerView>(R.id.recycleView)
         recycler.layoutManager = GridLayoutManager(this, 2)
 
-        val itemAdapter = ItemRecyclerViewAdapter(items)
+        val itemAdapter = ItemRecyclerViewAdapter(items, this)
         recycler.adapter = itemAdapter
 
         val fetcher = ItemFetcher(items, itemAdapter)
