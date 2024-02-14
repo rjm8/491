@@ -1,7 +1,5 @@
 package com.example.a491
 
-import android.content.res.Configuration
-import android.provider.ContactsContract.CommonDataKinds.Im
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +15,7 @@ class ItemRecyclerViewAdapter(
     : RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_item, parent, false)
+            .inflate(R.layout.item_card, parent, false)
         return ItemViewHolder(view)
     }
 
@@ -27,11 +25,11 @@ class ItemRecyclerViewAdapter(
         val mItemImage: ImageView = mView.findViewById<ImageView>(R.id.itemImage)
         val mItemTitle: TextView = mView.findViewById<TextView>(R.id.itemTitle)
         val mItemPrice: TextView = mView.findViewById<TextView>(R.id.itemPrice)
-        val mItemDesc: TextView = mView.findViewById<TextView>(R.id.itemDesc)
+        /*val mItemDesc: TextView = mView.findViewById<TextView>(R.id.itemDesc)
 
         override fun toString(): String {
             return mItemTitle.toString() + " '" + mItemDesc.text + "'"
-        }
+        }*/
     }
 
     /* Binds Views in the ViewHolder with the Data obtained */
@@ -42,7 +40,7 @@ class ItemRecyclerViewAdapter(
         holder.mItem = item
         holder.mItemTitle.text = item.itemTitle
         holder.mItemPrice.text = item.itemPrice
-        holder.mItemDesc.text = item.itemDesc
+        //holder.mItemDesc.text = item.itemDesc
 
         /* Set image using Glide */
         Glide.with(holder.mView)
