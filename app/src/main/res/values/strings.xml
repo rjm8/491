@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">491</string>
+    <string name="app_name">Rapid Delivery Rentals</string>
+    <string name="itemtitle">itemTitle</string>
+    <string name="itemprice">itemPrice</string>
+    <string name="itemdesc">itemDesc</string>
+    <string name="buy">Buy</string>
+
+    <!-- Menu -->
+    <string name="open_category_menu">Open</string>
+    <string name="close_category_menu">Close</string>
 </resources>
