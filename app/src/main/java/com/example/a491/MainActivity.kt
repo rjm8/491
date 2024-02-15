@@ -12,6 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -79,6 +80,28 @@ class MainActivity : AppCompatActivity() {
                 // Close the drawer after item click
                 categoryMenuLayout.closeDrawer(categoryView)
             }
+        }
+
+        /*
+        * Bottom Navigation Bar
+        */
+        val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navBar.itemIconTintList = null
+        navBar.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.homeButton -> {
+                    Toast.makeText(this, "Home Pressed", Toast.LENGTH_SHORT).show()
+                }
+                R.id.postButton -> {
+                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
+                }
+                R.id.profileButton -> {
+                    Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
+                }
+            }
+            navBar.itemIconTintList = null
+
+            true
         }
     }
 
