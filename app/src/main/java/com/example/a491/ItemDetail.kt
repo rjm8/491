@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ItemDetail :AppCompatActivity() {
     private lateinit var itemImageView : ImageView
@@ -31,5 +33,27 @@ class ItemDetail :AppCompatActivity() {
         Glide.with(this)
             .load(item.itemImageUrl)
             .into(itemImageView)
+
+        /*
+        * Bottom Navigation Bar
+        */
+        val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navBar.itemIconTintList = null
+        navBar.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.homeButton -> {
+                    Toast.makeText(this, "Home Pressed", Toast.LENGTH_SHORT).show()
+                }
+                R.id.postButton -> {
+                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
+                }
+                R.id.profileButton -> {
+                    Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
+                }
+            }
+            navBar.itemIconTintList = null
+
+            true
+        }
     }
 }
