@@ -14,7 +14,7 @@ class ItemFetcher (passedMovies: MutableList<Item>, passedAdapter: ItemRecyclerV
     fun getItems() {
         val results = JSONArray()
 
-        for (i in 1..8) {
+        for (i in 1..10) {
             val jsonObject = JSONObject()
             jsonObject.put("itemTitle", "itemTitle$i")
             jsonObject.put("itemPrice", "itemPrice$i")

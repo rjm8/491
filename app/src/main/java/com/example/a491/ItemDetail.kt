@@ -1,5 +1,7 @@
 package com.example.a491
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.ImageView
@@ -42,6 +44,10 @@ class ItemDetail :AppCompatActivity() {
         navBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.homeButton -> {
+//                    val intent = Intent(it as Context, MainActivity::class.java)
+//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+//                    startActivity(intent)
+                    finish() // this acts as a back button
                     Toast.makeText(this, "Home Pressed", Toast.LENGTH_SHORT).show()
                 }
                 R.id.postButton -> {
@@ -52,7 +58,6 @@ class ItemDetail :AppCompatActivity() {
                 }
             }
             navBar.itemIconTintList = null
-
             true
         }
     }
