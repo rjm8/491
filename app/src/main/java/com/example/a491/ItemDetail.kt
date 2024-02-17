@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -33,7 +34,8 @@ class ItemDetail :AppCompatActivity() {
         itemDesc.text = item.itemDesc
 
         Glide.with(this)
-            .load(item.itemImageUrl)
+//            .load(item.itemImageUrl)
+            .load(ContextCompat.getDrawable(this, R.drawable.shekhmus))
             .into(itemImageView)
 
         /*

@@ -8,6 +8,7 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -50,7 +51,8 @@ class ItemRecyclerViewAdapter(
 
         /* Set image using Glide */
         Glide.with(holder.mView)
-            .load(item.itemImageUrl)
+//            .load(item.itemImageUrl)
+            .load(ContextCompat.getDrawable(context, R.drawable.shekhmus))
             .centerInside()
             .placeholder(R.drawable.loading) // Loading Image
             .error(R.drawable.placeholder) // Error Image for when image is isn't found
