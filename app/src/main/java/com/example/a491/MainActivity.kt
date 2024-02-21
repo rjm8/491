@@ -2,6 +2,7 @@ package com.example.a491
 
 // Menu Imports
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -93,7 +94,9 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Home Pressed", Toast.LENGTH_SHORT).show()
                 }
                 R.id.postButton -> {
-                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, RentFormActivity::class.java)
+                    startActivity(intent)
                 }
                 R.id.profileButton -> {
                     Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
