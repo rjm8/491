@@ -17,8 +17,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rentingRecycler"
-        android:layout_width="409dp"
-        android:layout_height="133dp"
+        android:layout_width="411dp"
+        android:layout_height="174dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,8 +26,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listingRecycler"
-        android:layout_width="410dp"
-        android:layout_height="128dp"
+        android:layout_width="408dp"
+        android:layout_height="180dp"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />

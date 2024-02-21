@@ -2,6 +2,7 @@ package com.example.a491
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -18,8 +19,9 @@ class ProfileActivity : AppCompatActivity() {
         renting_recycler.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         listing_recycler.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 
-        val renting_adapter = ItemRecyclerViewAdapter(renting_items, this)
-        val listing_adapter = ItemRecyclerViewAdapter(listing_items, this)
+
+        val renting_adapter = ItemRecyclerViewAdapter(renting_items, this, false)
+        val listing_adapter = ItemRecyclerViewAdapter(listing_items, this, false)
 
         renting_recycler.adapter = renting_adapter
         listing_recycler.adapter = listing_adapter

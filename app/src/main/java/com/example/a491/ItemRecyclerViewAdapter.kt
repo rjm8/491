@@ -14,13 +14,20 @@ import com.bumptech.glide.Glide
 const val ITEM_EXTRA = "ITEM_EXTRA"
 class ItemRecyclerViewAdapter(
     private val items: List<Item>,
-    private val context: Context
+    private val context: Context,
+    private val orientation: Boolean
     //private val mListener: OnListFragmentInteractionListener?
     )
     : RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_card, parent, false)
+        val view: View
+        if(orientation == true) {
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_card, parent, false)
+        } else {
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.horizontal_item_card, parent, false)
+        }
         return ItemViewHolder(view)
     }
 
