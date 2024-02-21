@@ -13,6 +13,9 @@
         android:theme="@style/rapidRentalsTheme"
         tools:targetApi="31">
         <activity
+            android:name=".RentFormActivity"
+            android:exported="true"/>
+        <activity
             android:name=".ItemDetail"
             android:exported="true" />
         <activity
