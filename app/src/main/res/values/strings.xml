@@ -8,4 +8,8 @@
     <!-- Menu -->
     <string name="open_category_menu">Open</string>
     <string name="close_category_menu">Close</string>
+    <string name="username">Username</string>
+    <string name="renting">Renting</string>
+    <string name="currently_renting">Currently renting</string>
+    <string name="currently_listing">Currently listing</string>
 </resources>

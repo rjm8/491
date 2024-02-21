@@ -2,6 +2,7 @@ package com.example.a491
 
 // Menu Imports
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -96,7 +97,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
                 }
                 R.id.profileButton -> {
-                    Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, ProfileActivity::class.java))
                 }
             }
             navBar.itemIconTintList = null
