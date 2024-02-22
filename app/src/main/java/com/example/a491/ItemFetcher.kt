@@ -1,6 +1,8 @@
 package com.example.a491
 
+import android.content.Context
 import android.util.Log
+import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
@@ -20,7 +22,6 @@ class ItemFetcher (passedMovies: MutableList<Item>, passedAdapter: ItemRecyclerV
             jsonObject.put("itemPrice", "itemPrice$i")
             jsonObject.put("itemDesc", "itemDesc$i")
             jsonObject.put("itemImage", "itemImage$i")
-
             results.put(jsonObject)
         }
         val itemsRawJSON : String = results.toString()

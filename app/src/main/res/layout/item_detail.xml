@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#CA5555">
 
     <ImageView
         android:id="@+id/itemImage"
@@ -24,6 +25,7 @@
         android:text="@string/itemtitle"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemImage" />
 
@@ -35,6 +37,7 @@
         android:padding="4dp"
         android:layout_margin="4dp"
         android:textSize="20sp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemPrice" />
 
@@ -47,6 +50,7 @@
         android:layout_margin="4dp"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemTitle" />
 
@@ -54,6 +58,8 @@
         android:id="@+id/buyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@drawable/button_border"
         android:layout_marginBottom="8dp"
         android:text="@string/buy"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,7 +72,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/white"
+        android:background="@drawable/nav_bar_background"
         app:itemIconSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
