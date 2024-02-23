@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 private const val TAG = "RentFormActivity"
 class RentFormActivity : AppCompatActivity() {
@@ -59,6 +60,29 @@ class RentFormActivity : AppCompatActivity() {
             // TODO: Make an intent that goes to the item's page after it is created or back to main screen
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+        /*
+        * Bottom Navigation Bar
+        */
+        val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navBar.itemIconTintList = null
+        navBar.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.homeButton -> {
+                    Toast.makeText(this, "Home Pressed", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.postButton -> {
+//                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
+                }
+                R.id.profileButton -> {
+                    Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
+                }
+            }
+            navBar.itemIconTintList = null
+
+            true
         }
     }
 }
