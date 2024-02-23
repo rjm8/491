@@ -73,9 +73,11 @@ class RentFormActivity : AppCompatActivity() {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
+
                 R.id.postButton -> {
 //                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
                 }
+
                 R.id.profileButton -> {
                     Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
                 }
