@@ -50,12 +50,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemTitle" />
 
+    <!-- Bottom Navigation Bar -->
     <Button
-        android:id="@+id/buyButton"
+        android:id="@+id/returnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/buy"
+        android:text="@string/return_item"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -63,7 +64,6 @@
         app:layout_constraintTop_toBottomOf="@+id/itemDescription"
         app:layout_constraintVertical_bias="0.306" />
 
-    <!-- Bottom Navigation Bar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

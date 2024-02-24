@@ -12,6 +12,7 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+        //val sharedPref = activity?.get
 
         val renting_recycler = findViewById<RecyclerView>(R.id.rentingRecycler)
         val listing_recycler = findViewById<RecyclerView>(R.id.listingRecycler)
@@ -20,8 +21,8 @@ class ProfileActivity : AppCompatActivity() {
         listing_recycler.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 
 
-        val renting_adapter = ItemRecyclerViewAdapter(renting_items, this, false)
-        val listing_adapter = ItemRecyclerViewAdapter(listing_items, this, false)
+        val renting_adapter = ItemRecyclerViewAdapter(renting_items, this, false, true)
+        val listing_adapter = ItemRecyclerViewAdapter(listing_items, this, false, false)
 
         renting_recycler.adapter = renting_adapter
         listing_recycler.adapter = listing_adapter
