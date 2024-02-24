@@ -1,12 +1,15 @@
 package com.example.a491
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProfileActivity : AppCompatActivity() {
     val renting_items = mutableListOf<Item>()
@@ -44,6 +47,28 @@ class ProfileActivity : AppCompatActivity() {
         val listing_fetcher = ItemFetcher(listing_items, listing_adapter)
         renting_fetcher.getRentingItems()
         listing_fetcher.getListingItems()
+
+
+        val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navBar.itemIconTintList = null
+        navBar.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.homeButton -> {
+                    //Toast.makeText(this, "Home Pressed", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
+                R.id.postButton -> {
+                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
+                }
+                R.id.profileButton -> {
+                    // Do nothing
+                }
+            }
+            navBar.itemIconTintList = null
+
+            true
+        }
+
 
 
     }
