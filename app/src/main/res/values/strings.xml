@@ -13,4 +13,5 @@
     <string name="currently_renting">Currently renting</string>
     <string name="currently_listing">Currently listing</string>
     <string name="return_item">Return</string>
+    <string name="username_key">username</string>
 </resources>
