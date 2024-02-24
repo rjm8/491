@@ -94,7 +94,9 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Home Pressed", Toast.LENGTH_SHORT).show()
                 }
                 R.id.postButton -> {
-                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, RentFormActivity::class.java)
+                    startActivity(intent)
                 }
                 R.id.profileButton -> {
                     //Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
