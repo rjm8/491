@@ -69,7 +69,6 @@ class RentFormActivity : AppCompatActivity() {
         navBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.homeButton -> {
-                    Toast.makeText(this, "Home Pressed", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
@@ -79,7 +78,7 @@ class RentFormActivity : AppCompatActivity() {
                 }
 
                 R.id.profileButton -> {
-                    Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, ProfileActivity::class.java))
                 }
             }
             navBar.itemIconTintList = null

@@ -72,10 +72,12 @@
     <!-- Bottom Navigation Bar -->
     <Button
         android:id="@+id/returnButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="8dp"
         android:text="@string/return_item"
+        android:textColor="@color/white"
+        android:background="@drawable/black_rounded_outline_text"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -87,7 +89,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/white"
+        android:background="@drawable/nav_bar_background"
         app:itemIconSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

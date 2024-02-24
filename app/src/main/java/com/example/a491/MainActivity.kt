@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         navBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.homeButton -> {
-                    Toast.makeText(this, "Home Pressed", Toast.LENGTH_SHORT).show()
+                    // do nothing
                 }
                 R.id.postButton -> {
 //                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
