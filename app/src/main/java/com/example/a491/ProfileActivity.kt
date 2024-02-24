@@ -58,7 +58,7 @@ class ProfileActivity : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                 }
                 R.id.postButton -> {
-                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, RentFormActivity::class.java))
                 }
                 R.id.profileButton -> {
                     // Do nothing

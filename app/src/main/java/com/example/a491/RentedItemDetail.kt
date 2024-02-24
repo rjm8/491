@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -33,7 +34,7 @@ class RentedItemDetail :AppCompatActivity() {
         itemDesc.text = item.itemDesc
 
         Glide.with(this)
-            .load(item.itemImageUrl)
+            .load(ContextCompat.getDrawable(this, R.drawable.shekhmus))
             .into(itemImageView)
 
         /*
@@ -44,17 +45,13 @@ class RentedItemDetail :AppCompatActivity() {
         navBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.homeButton -> {
-//                    val intent = Intent(it as Context, MainActivity::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-//                    startActivity(intent)
-                    finish() // this acts as a back button
-                    Toast.makeText(this, "Home Pressed", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
                 }
                 R.id.postButton -> {
-                    Toast.makeText(this, "Post Pressed", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, RentFormActivity::class.java))
                 }
                 R.id.profileButton -> {
-                    Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
+                    finish()
                 }
             }
             navBar.itemIconTintList = null
