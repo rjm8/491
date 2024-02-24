@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         val recycler = findViewById<RecyclerView>(R.id.recycleView)
         recycler.layoutManager = GridLayoutManager(this, 2)
 
-        val itemAdapter = ItemRecyclerViewAdapter(items, this)
+        val itemAdapter = ItemRecyclerViewAdapter(items, this, true, false)
         recycler.adapter = itemAdapter
 
         val fetcher = ItemFetcher(items, itemAdapter)
@@ -99,7 +99,8 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.profileButton -> {
-                    Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, "Profile Pressed", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, ProfileActivity::class.java))
                 }
             }
             navBar.itemIconTintList = null

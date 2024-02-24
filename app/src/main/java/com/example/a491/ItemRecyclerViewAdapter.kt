@@ -15,13 +15,20 @@ import com.bumptech.glide.Glide
 const val ITEM_EXTRA = "ITEM_EXTRA"
 class ItemRecyclerViewAdapter(
     private val items: List<Item>,
-    private val context: Context
-    //private val mListener: OnListFragmentInteractionListener?
+    private val context: Context,
+    private val vertical: Boolean,
+    private val currently_renting: Boolean
     )
     : RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_card, parent, false)
+        val view: View
+        if(vertical == true) {
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_card, parent, false)
+        } else {
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.horizontal_item_card, parent, false)
+        }
         return ItemViewHolder(view)
     }
 
@@ -60,7 +67,12 @@ class ItemRecyclerViewAdapter(
 
         holder.mView.setOnClickListener {
             //TODO: open item page
-            val intent = Intent(context, ItemDetail::class.java)
+            val intent: Intent
+            if (currently_renting) {
+                intent = Intent(context, RentedItemDetail::class.java)
+            } else {
+                intent = Intent(context, ItemDetail::class.java)
+            }
             intent.putExtra(ITEM_EXTRA, item)
             context.startActivity(intent)
         }
