@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class ProfileActivity : AppCompatActivity() {
     val renting_items = mutableListOf<Item>()
     val listing_items = mutableListOf<Item>()
+    val prev_rented_items = mutableListOf<Item>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -32,21 +33,30 @@ class ProfileActivity : AppCompatActivity() {
 
         val renting_recycler = findViewById<RecyclerView>(R.id.rentingRecycler)
         val listing_recycler = findViewById<RecyclerView>(R.id.listingRecycler)
+        val prev_rented_recycler = findViewById<RecyclerView>(R.id.prevRentedRecycler)
 
         renting_recycler.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         listing_recycler.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        prev_rented_recycler.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 
 
         val renting_adapter = ItemRecyclerViewAdapter(renting_items, this, false, true)
         val listing_adapter = ItemRecyclerViewAdapter(listing_items, this, false, false)
+        val prev_rented_adapter = ItemRecyclerViewAdapter(prev_rented_items, this, false, false)
 
         renting_recycler.adapter = renting_adapter
         listing_recycler.adapter = listing_adapter
+        prev_rented_recycler.adapter = prev_rented_adapter
+
 
         val renting_fetcher = ItemFetcher(renting_items, renting_adapter)
         val listing_fetcher = ItemFetcher(listing_items, listing_adapter)
+        val prev_rented_fetcher = ItemFetcher(prev_rented_items, listing_adapter)
+
         renting_fetcher.getRentingItems()
         listing_fetcher.getListingItems()
+        prev_rented_fetcher.getListingItems()
+
 
 
         val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
