@@ -16,11 +16,12 @@ class ItemFetcher (passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVi
     fun getItems() {
         val results = JSONArray()
 
-        for (i in 1..10) {
+        for (i in 0..9) {
             val jsonObject = JSONObject()
-            jsonObject.put("itemTitle", "itemTitle$i")
-            jsonObject.put("itemPrice", "itemPrice$i")
-            jsonObject.put("itemDesc", "itemDesc$i")
+            val desc = "really\nlong\ndescription\nto\ntest\nout\nthe\nscroll\nview\nfunctionality\nwhich\nis\nan\nimportant\ncase\nto\nconsider\n$i"
+            jsonObject.put("itemTitle", "Really Long Item Title $i")
+            jsonObject.put("itemPrice", "$1000000.0$i")
+            jsonObject.put("itemDesc", desc)
             jsonObject.put("itemImage", "itemImage$i")
             results.put(jsonObject)
         }
