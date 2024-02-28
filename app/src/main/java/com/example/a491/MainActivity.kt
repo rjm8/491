@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.main_screen, ItemFragment(), null).commit()*/
 
+        startActivity(Intent(this, LoginActivity::class.java))
+
         val recycler = findViewById<RecyclerView>(R.id.recycleView)
         recycler.layoutManager = GridLayoutManager(this, 2)
 
