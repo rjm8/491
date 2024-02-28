@@ -6,7 +6,7 @@ import retrofit2.http.POST
 
 interface ApiService {
     @GET("users/")
-    suspend fun getUserData(): List<Account>
+    suspend fun getUsers(): List<Account>
 
     @POST("users/")
     suspend fun postUser(@Body userData: Account)
