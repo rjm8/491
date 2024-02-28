@@ -2,6 +2,7 @@ package com.example.a491
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
@@ -11,22 +12,28 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
 class ProfileActivity : AppCompatActivity() {
     val renting_items = mutableListOf<Item>()
     val listing_items = mutableListOf<Item>()
     val prev_rented_items = mutableListOf<Item>()
+    lateinit var sharedpreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
         // When we implement accounts, we'll use shared preferences to store
         // the currently logged in account name, for now we'll hard code
+        /*
         val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
         with (sharedPref.edit()) {
             putString(getString(R.string.username_key), "TestName")
             apply()
         }
-        val username = sharedPref.getString(getString(R.string.username_key), "Username")
+        val username = sharedPref.getString(getString(R.string.username_key), "Username")*/
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+        val username = sharedpreferences.getString(getString(R.string.username_key), "defUsername")
+
 
         val usernameView = findViewById<TextView>(R.id.username)
         usernameView.text = username

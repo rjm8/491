@@ -1,6 +1,8 @@
 package com.example.a491
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -14,7 +16,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+
+const val SHARED_PREFS = "SHARED_PREFS"
 class LoginActivity : AppCompatActivity() {
+    private lateinit var sharedpreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -55,6 +60,11 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             if (valid == 1) { // if match is found, post username to sharedPreferences and go to main screen
+                sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+                val editor = sharedpreferences.edit()
+                editor.clear()
+                editor.putString(getString(R.string.username_key), username)
+                editor.apply()
                 finish()
             } else {
                 Toast.makeText(this, "Invalid login", Toast.LENGTH_SHORT).show()

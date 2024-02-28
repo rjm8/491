@@ -22,4 +22,7 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="location">Location</string>
+    <string name="SHARED_PREFS">SHARED_PREFS</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="payment_method">Payment Method</string>
 </resources>
