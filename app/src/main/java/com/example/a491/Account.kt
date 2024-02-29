@@ -5,6 +5,8 @@ class Account (
     val last_name: String,
     val username: String,
     val password: String,
-    val location: String
+    val phone_number: String,
+    val location: String,
+    val payment_method: String
 ) {
 }

@@ -1,5 +1,8 @@
 package com.example.a491
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -11,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-
+private lateinit var sharedpreferences: SharedPreferences
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +26,8 @@ class RegisterActivity : AppCompatActivity() {
         //val emailInput = findViewById<EditText>(R.id.emailInput)
         val locationInput = findViewById<EditText>(R.id.locationInput)
         val passwordInput = findViewById<EditText>(R.id.passwordInput)
+        val phoneInput = findViewById<EditText>(R.id.phoneInput)
+        val paymentInput = findViewById<EditText>(R.id.paymentInput)
         val button = findViewById<Button>(R.id.registerButton)
 
         button.setOnClickListener {
@@ -31,9 +36,11 @@ class RegisterActivity : AppCompatActivity() {
                 lNameInput.text.toString(),
                 usernameInput.text.toString(),
                 passwordInput.text.toString(),
-                locationInput.text.toString()
+                phoneInput.text.toString(),
+                locationInput.text.toString(),
+                paymentInput.text.toString()
             )
-            val job = GlobalScope.launch(Dispatchers.Main) {
+            GlobalScope.launch(Dispatchers.Main) {
                 postUserData(newAccount)
             }
 
@@ -45,7 +52,14 @@ class RegisterActivity : AppCompatActivity() {
         try {
             val apiService = RetrofitClient.instance.create(ApiService::class.java)
             apiService.postUser(user)
-            finish()
+
+            // store username in sharedpreferences and login
+            sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+            val editor = sharedpreferences.edit()
+            editor.clear()
+            editor.putString(getString(R.string.username_key), user.username)
+            editor.apply()
+            startActivity(Intent(this, MainActivity::class.java))
         } catch (e: Exception) {
             Log.e("RegisterActivity", "Error: ${e.message}", e)
         }

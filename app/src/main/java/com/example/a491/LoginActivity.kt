@@ -17,7 +17,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-const val SHARED_PREFS = "SHARED_PREFS"
 class LoginActivity : AppCompatActivity() {
     private lateinit var sharedpreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
