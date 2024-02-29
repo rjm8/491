@@ -15,4 +15,6 @@
     <string name="return_item">Return</string>
     <string name="username_key">username</string>
     <string name="previously_rented">Previously rented</string>
+
+    <string name="preference_file">com.example.a491_preferences</string>
 </resources>
