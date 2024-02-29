@@ -2,18 +2,47 @@ package com.example.a491
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.text.Html.FROM_HTML_MODE_LEGACY
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.firestore
+import com.google.firebase.storage.storage
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import com.google.firebase.firestore.ktx.firestore
+//import com.google.firebase.FirebaseApp
+//import com.google.firebase.appcheck.FirebaseAppCheck
+//import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
+
+/*
+to post listings, we need:
+ - image
+ - item name
+ - description
+ - lister id (user id)
+ - user's location from user table
+ - price
+ - price per day
+ - max duration
+ */
+
+
 
 private const val TAG = "RentFormActivity"
 class RentFormActivity : AppCompatActivity() {
@@ -22,6 +51,7 @@ class RentFormActivity : AppCompatActivity() {
     private lateinit var rentItemDescription: EditText
     private lateinit var rentItemPrice: EditText
     private lateinit var rentSubmitForm: Button
+    private lateinit var pickImageResultLauncher: ActivityResultLauncher<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +73,20 @@ class RentFormActivity : AppCompatActivity() {
 
 
         rentImageUpload.setOnClickListener {
+            pickImageResultLauncher.launch("image/*")
             Toast.makeText(this, "Image Uploader Test", Toast.LENGTH_SHORT).show()
         }
+        pickImageResultLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let {
+                val imageView: ImageButton = findViewById(R.id.listingImage)
+                imageView.setImageURI(uri)
+                imageView.visibility = ImageButton.VISIBLE
+                rentImageUpload.visibility = Button.INVISIBLE
+                sendToFirebase(uri)
+                Log.i("shekhmus", uri.toString())
+            }
+        }
+
         rentSubmitForm.setOnClickListener {
             val imagePhotoPath = "TO DO"
             val itemName = rentItemName.getText().toString()
@@ -85,5 +127,34 @@ class RentFormActivity : AppCompatActivity() {
 
             true
         }
+    }
+
+    private fun sendToFirebase(uri: Uri) {
+        val storageRef = Firebase.storage.reference
+        val imageRef = storageRef.child("images/shekhmus.jpg")
+
+        imageRef.putFile(uri)
+            .addOnSuccessListener {
+                it.metadata?.reference?.downloadUrl?.addOnSuccessListener { downloadUri ->
+                    val downloadURL = downloadUri.toString()
+                    Log.d("shekhmus", downloadURL)
+                    val db = Firebase.firestore
+                    val imageInfo = hashMapOf(
+                        "imageUrl" to downloadURL,
+                        "timestamp" to FieldValue.serverTimestamp()
+                    )
+
+                    db.collection("images").add(imageInfo)
+                        .addOnSuccessListener {
+                            Log.d("UploadSuccess", "Image URL stored in Firestore: $downloadURL")
+                        }
+                        .addOnFailureListener {
+                            Log.e("error", it.toString())
+                        }
+                }
+            }
+            .addOnFailureListener {
+                Log.e("error", it.toString())
+            }
     }
 }
