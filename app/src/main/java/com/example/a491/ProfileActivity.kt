@@ -8,10 +8,12 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 
 
 class ProfileActivity : AppCompatActivity() {
@@ -51,11 +53,8 @@ class ProfileActivity : AppCompatActivity() {
 
         val renting_fetcher = ItemFetcher(renting_items, renting_adapter)
         val listing_fetcher = ItemFetcher(listing_items, listing_adapter)
-        val prev_rented_fetcher = ItemFetcher(prev_rented_items, listing_adapter)
+        val prev_rented_fetcher = ItemFetcher(prev_rented_items, prev_rented_adapter)
 
-        renting_fetcher.getRentingItems()
-        listing_fetcher.getListingItems()
-        prev_rented_fetcher.getListingItems()
 
         // logout button
         val logoutButton = findViewById<ImageButton>(R.id.logoutButton)
@@ -68,6 +67,11 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
+        lifecycleScope.launch {
+            renting_fetcher.getRentingItems(17)
+            listing_fetcher.getListingItems(17)
+            prev_rented_fetcher.getPreviouslyRentedItems(17)
+        }
 
         val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         navBar.itemIconTintList = null
