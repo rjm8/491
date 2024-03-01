@@ -18,6 +18,7 @@ import com.google.firebase.storage.ktx.storage
 import com.google.firebase.firestore.ktx.firestore
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import com.example.a491.api.RetrofitClient
 import retrofit2.Call
 
 private const val TAG = "RentFormActivity"
@@ -88,7 +89,7 @@ class RentFormActivity : AppCompatActivity() {
         }
 
         rentSubmitForm.setOnClickListener {
-            val userId = 16  // this should be the actual user id
+            val userId = 27  // this should be the actual user id
             // image url stored in imageUrl
             val itemName = rentItemName.getText().toString()
             val itemDescription = rentItemDescription.getText().toString()
@@ -112,8 +113,8 @@ class RentFormActivity : AppCompatActivity() {
                             max_duration = duration.toInt(),
                             lister = userId
                         )
-                        val listingService = RetrofitClient.instance.create(ListingService::class.java)
-                        val call = listingService.createListing(listing)
+                        val apiService = RetrofitClient.instance.create(ApiService::class.java)
+                        val call = apiService.createListing(listing)
 
                         call.enqueue(object : retrofit2.Callback<Void> {
                             override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {

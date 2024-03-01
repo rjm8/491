@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.example.a491.api.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 import java.time.LocalDate
@@ -78,8 +79,8 @@ class ItemDetail :AppCompatActivity() {
                 renter_location = renterLocation
             )
 
-            val rentalService = RetrofitClient.instance.create(RentalService::class.java)
-            val call = rentalService.createRental(rental)
+            val apiService = RetrofitClient.instance.create(ApiService::class.java)
+            val call = apiService.createRental(rental)
 
             call.enqueue(object : retrofit2.Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {
