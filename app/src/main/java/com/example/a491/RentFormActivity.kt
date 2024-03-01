@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,6 +30,8 @@ import com.google.firebase.firestore.ktx.firestore
 //import com.google.firebase.FirebaseApp
 //import com.google.firebase.appcheck.FirebaseAppCheck
 //import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 
 /*
 to post listings, we need:
@@ -42,8 +45,6 @@ to post listings, we need:
  - max duration
  */
 
-
-
 private const val TAG = "RentFormActivity"
 class RentFormActivity : AppCompatActivity() {
     private lateinit var rentImageUpload: Button
@@ -52,6 +53,8 @@ class RentFormActivity : AppCompatActivity() {
     private lateinit var rentItemPrice: EditText
     private lateinit var rentSubmitForm: Button
     private lateinit var pickImageResultLauncher: ActivityResultLauncher<String>
+    private lateinit var layout: ConstraintLayout
+    private var constraintSet = ConstraintSet()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +65,8 @@ class RentFormActivity : AppCompatActivity() {
         rentItemDescription = findViewById(R.id.formDescriptionText)
         rentItemPrice = findViewById(R.id.formPriceText)
         rentSubmitForm = findViewById(R.id.rentSubmitButton)
+        layout = findViewById(R.id.rentalConstraintLayout)
+        constraintSet.clone(layout)
 
 //        val itemHint = SpannableString("Product Name\nEnter your product Name")
 //
@@ -80,10 +85,17 @@ class RentFormActivity : AppCompatActivity() {
             uri?.let {
                 val imageView: ImageButton = findViewById(R.id.listingImage)
                 imageView.setImageURI(uri)
-                imageView.visibility = ImageButton.VISIBLE
-                rentImageUpload.visibility = Button.INVISIBLE
                 sendToFirebase(uri)
                 Log.i("shekhmus", uri.toString())
+                constraintSet.connect(
+                    R.id.productNameTitle,
+                    ConstraintSet.TOP,
+                    R.id.listingImage,
+                    ConstraintSet.BOTTOM
+                )
+                constraintSet.applyTo(layout)
+                imageView.visibility = ImageButton.VISIBLE
+                rentImageUpload.visibility = Button.INVISIBLE
             }
         }
 
