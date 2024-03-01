@@ -27,6 +27,7 @@ import com.google.firebase.storage.ktx.storage
 import com.google.firebase.firestore.ktx.firestore
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import retrofit2.Call
 
 private const val TAG = "RentFormActivity"
 class RentFormActivity : AppCompatActivity() {
@@ -91,7 +92,7 @@ class RentFormActivity : AppCompatActivity() {
 
         rentSubmitForm.setOnClickListener {
             val userId = 16  // this should be the actual user id
-            val imagePhotoPath = imageUrl
+            // image url stored in imageUrl
             val itemName = rentItemName.getText().toString()
             val itemDescription = rentItemDescription.getText().toString()
             val retailPrice = rentItemPrice.getText().toString()
@@ -99,9 +100,35 @@ class RentFormActivity : AppCompatActivity() {
             val rentalPrice = rentItemPPD.getText().toString()
             val duration = rentItemDuration.getText().toString()
 
-            if (imagePhotoPath.isNotEmpty() && itemName.isNotEmpty() && itemDescription.isNotEmpty()
+            if (imageUrl.isNotEmpty() && itemName.isNotEmpty() && itemDescription.isNotEmpty()
                 && retailPrice.isNotEmpty() && rentalPrice.isNotEmpty() && duration.isNotEmpty() ) {
                 // TODO:  SEND ITEMS TO DATABASE
+                val listing = Listing(
+                    rental_price_per_day = rentalPrice,
+                    retail_price = retailPrice,
+                    item_name = itemName,
+                    image_url = imageUrl,
+                    description = itemDescription,
+                    max_duration = duration.toInt(),
+                    lister = userId
+                )
+
+                val listingService = RetrofitClient.instance.create(ListingService::class.java)
+                val call = listingService.createListing(listing)
+
+                call.enqueue(object : retrofit2.Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {
+                        if (response.isSuccessful) {
+                            Log.d("API", "Listing created successfully")
+                        } else {
+                            Log.e("API", "Failed to create listing: ${response.errorBody()?.string()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.e("API", "Failed to create listing", t)
+                    }
+                })
 
                 // TODO: Make an intent that goes to the item's page after it is created or back to main screen
                 val intent = Intent(this, MainActivity::class.java)
@@ -137,7 +164,7 @@ class RentFormActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendToFirebase(uri: Uri) {
+    private fun sendToFirebase(uri: Uri){
         val storageRef = Firebase.storage.reference
         val imageRef = storageRef.child("images/shekhmus.jpg")
 
@@ -147,6 +174,7 @@ class RentFormActivity : AppCompatActivity() {
                     val downloadURL = downloadUri.toString()
                     Log.d("shekhmus", downloadURL)
                     val db = Firebase.firestore
+                    imageUrl = downloadURL
                     val imageInfo = hashMapOf(
                         "imageUrl" to downloadURL,
                         "timestamp" to FieldValue.serverTimestamp()

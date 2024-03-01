@@ -5,6 +5,6 @@ import retrofit2.Call
 import retrofit2.http.Body
 
 interface ListingService {
-    @POST("rapidrentals/listings")
+    @POST("rapidrentals/listings/")
     fun createListing(@Body createListing: Listing): Call<Void>
 }
