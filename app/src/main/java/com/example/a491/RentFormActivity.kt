@@ -22,28 +22,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.firestore
-import com.google.firebase.storage.storage
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.firestore.ktx.firestore
-//import com.google.firebase.FirebaseApp
-//import com.google.firebase.appcheck.FirebaseAppCheck
-//import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-
-/*
-to post listings, we need:
- - image
- - item name
- - description
- - lister id (user id)
- - user's location from user table
- - price
- - price per day
- - max duration
- */
 
 private const val TAG = "RentFormActivity"
 class RentFormActivity : AppCompatActivity() {
@@ -51,10 +34,14 @@ class RentFormActivity : AppCompatActivity() {
     private lateinit var rentItemName: EditText
     private lateinit var rentItemDescription: EditText
     private lateinit var rentItemPrice: EditText
+    private lateinit var rentItemPPD: EditText
+    private lateinit var rentItemDuration: EditText
     private lateinit var rentSubmitForm: Button
     private lateinit var pickImageResultLauncher: ActivityResultLauncher<String>
     private lateinit var layout: ConstraintLayout
     private var constraintSet = ConstraintSet()
+    private var imageUrl: String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +52,8 @@ class RentFormActivity : AppCompatActivity() {
         rentItemDescription = findViewById(R.id.formDescriptionText)
         rentItemPrice = findViewById(R.id.formPriceText)
         rentSubmitForm = findViewById(R.id.rentSubmitButton)
+        rentItemPPD = findViewById(R.id.formPPDText)
+        rentItemDuration = findViewById(R.id.formDurationText)
         layout = findViewById(R.id.rentalConstraintLayout)
         constraintSet.clone(layout)
 
@@ -87,6 +76,7 @@ class RentFormActivity : AppCompatActivity() {
                 imageView.setImageURI(uri)
                 sendToFirebase(uri)
                 Log.i("shekhmus", uri.toString())
+                imageUrl = uri.toString()
                 constraintSet.connect(
                     R.id.productNameTitle,
                     ConstraintSet.TOP,
@@ -100,20 +90,26 @@ class RentFormActivity : AppCompatActivity() {
         }
 
         rentSubmitForm.setOnClickListener {
-            val imagePhotoPath = "TO DO"
+            val userId = 16  // this should be the actual user id
+            val imagePhotoPath = imageUrl
             val itemName = rentItemName.getText().toString()
             val itemDescription = rentItemDescription.getText().toString()
-            val itemPrice = rentItemPrice.getText().toString()
+            val retailPrice = rentItemPrice.getText().toString()
+            val location = "shekhmus's home" // this should be retrieved from user's row in users table
+            val rentalPrice = rentItemPPD.getText().toString()
+            val duration = rentItemDuration.getText().toString()
 
-            rentItemName.getText().clear()
-            rentItemDescription.getText().clear()
-            rentItemPrice.getText().clear()
+            if (imagePhotoPath.isNotEmpty() && itemName.isNotEmpty() && itemDescription.isNotEmpty()
+                && retailPrice.isNotEmpty() && rentalPrice.isNotEmpty() && duration.isNotEmpty() ) {
+                // TODO:  SEND ITEMS TO DATABASE
 
-            // TODO: Processing of items
-
-            // TODO: Make an intent that goes to the item's page after it is created or back to main screen
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+                // TODO: Make an intent that goes to the item's page after it is created or back to main screen
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                Toast.makeText(this, "Incomplete Form", Toast.LENGTH_SHORT).show()
+            }
         }
         /*
         * Bottom Navigation Bar
