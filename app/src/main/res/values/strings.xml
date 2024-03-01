@@ -15,4 +15,15 @@
     <string name="return_item">Return</string>
     <string name="username_key">username</string>
     <string name="previously_rented">Previously rented</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="register">Register</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="location">Location</string>
+    <string name="SHARED_PREFS">SHARED_PREFS</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="user_id_key">user id</string>
 </resources>
