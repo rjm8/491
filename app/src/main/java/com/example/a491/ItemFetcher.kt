@@ -20,10 +20,10 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
 
     fun getItems() {
         var results = JSONArray()
-        val job = GlobalScope.launch(Dispatchers.Main) {
-            results = getListedItemsByUser("https://rapidrentals-9797a640fd53.herokuapp.com/rapidrentals/", results)
+        GlobalScope.launch(Dispatchers.Main) {
+            results = getListedItems("https://rapidrentals-9797a640fd53.herokuapp.com/rapidrentals/", results)
             val itemsRawJSON : String = results.toString()
-//            Log.v("itemFetcher", itemsRawJSON)
+
             // Gson used to get data from @SerializedName tags and fill into model objects
             val gson = Gson()
             val arrayItemType = object : TypeToken<List<Item>>() {}.type
@@ -36,13 +36,13 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
 
     fun getRentingItems(userId: Int) {
         var results = JSONArray()
-        val job = GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(Dispatchers.Main) {
             results = getCurrentlyRentingItemsByUser(
                 "https://rapidrentals-9797a640fd53.herokuapp.com/rapidrentals/",
                 results,
                 userId)
             val itemsRawJSON: String = results.toString()
-//            Log.v("itemFetcher", itemsRawJSON)
+
             // Gson used to get data from @SerializedName tags and fill into model objects
             val gson = Gson()
             val arrayItemType = object : TypeToken<List<Item>>() {}.type
@@ -55,12 +55,12 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
 
     fun getListingItems(userId: Int) {
         var results = JSONArray()
-        val job = GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(Dispatchers.Main) {
             results = getListedItemsByUser("https://rapidrentals-9797a640fd53.herokuapp.com/rapidrentals/",
                 results,
                 userId)
             val itemsRawJSON : String = results.toString()
-//            Log.v("itemFetcher", itemsRawJSON)
+
             // Gson used to get data from @SerializedName tags and fill into model objects
             val gson = Gson()
             val arrayItemType = object : TypeToken<List<Item>>() {}.type
@@ -73,13 +73,13 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
 
     fun getPreviouslyRentedItems(userId: Int) {
         var results = JSONArray()
-        val job = GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(Dispatchers.Main) {
             results = getPreviouslyRentingItemsByUser(
                 "https://rapidrentals-9797a640fd53.herokuapp.com/rapidrentals/",
                 results,
                 userId)
             val itemsRawJSON: String = results.toString()
-//            Log.v("itemFetcher", itemsRawJSON)
+
             // Gson used to get data from @SerializedName tags and fill into model objects
             val gson = Gson()
             val arrayItemType = object : TypeToken<List<Item>>() {}.type
@@ -90,7 +90,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
         }
     }
 
-    suspend fun getListedItemsByUser(endpoint: String, results: JSONArray) : JSONArray {
+    suspend fun getListedItems(endpoint: String, results: JSONArray) : JSONArray {
         try {
             val retrofit = Retrofit.Builder()
                 .baseUrl(endpoint)
@@ -99,11 +99,10 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
 
             val apiService = retrofit.create(ApiService::class.java)
 
-            // Make the API call using suspend function
+            // Make the API call
             val userList = apiService.getAllListedItemData()
 
             userList.forEach {userData ->
-//                Log.d("itemFetcher", "item_name: ${userData.item_name}")
                 val jsonObject = JSONObject()
                 jsonObject.put("id", userData.id)
                 jsonObject.put("rental_price_per_day", userData.rental_price_per_day)
@@ -129,7 +128,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
 
             val apiService = retrofit.create(ApiService::class.java)
 
-            // Make the API call using suspend function
+            // Make the API call
             val userList = apiService.getListedItemData(userId)
 
             userList.forEach {userData ->
@@ -160,7 +159,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
 
             val apiService = retrofit.create(ApiService::class.java)
 
-            // Make the API call using suspend function
+            // Make the API call
             val userList = apiService.getCurrentRentItemData(userId)
 
             userList.forEach {userData ->
@@ -169,12 +168,12 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
                 jsonObject.put("rental_date", userData.rental_date)
                 jsonObject.put("itemPrice", userData.total_price)
                 jsonObject.put("duration", userData.duration)
+                jsonObject.put("itemTitle", userData.item_name)
                 jsonObject.put("lister", userData.lister)
                 jsonObject.put("renter", userData.renter)
-                jsonObject.put("itemTitle", userData.listing)
+                jsonObject.put("listing", userData.listing)
                 jsonObject.put("location_of_renter", userData.location_of_renter)
                 jsonObject.put("location_of_lister", userData.location_of_lister)
-
 
                 results.put(jsonObject)
             }
@@ -193,7 +192,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
 
             val apiService = retrofit.create(ApiService::class.java)
 
-            // Make the API call using suspend function
+            // Make the API call
             val userList = apiService.getPreviousRentItemData(userId)
 
             userList.forEach {userData ->
@@ -202,12 +201,12 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
                 jsonObject.put("rental_date", userData.rental_date)
                 jsonObject.put("itemPrice", userData.total_price)
                 jsonObject.put("duration", userData.duration)
+                jsonObject.put("itemTitle", userData.item_name)
                 jsonObject.put("lister", userData.lister)
                 jsonObject.put("renter", userData.renter)
-                jsonObject.put("itemTitle", userData.listing)
+                jsonObject.put("listing", userData.listing)
                 jsonObject.put("location_of_renter", userData.location_of_renter)
                 jsonObject.put("location_of_lister", userData.location_of_lister)
-
 
                 results.put(jsonObject)
             }

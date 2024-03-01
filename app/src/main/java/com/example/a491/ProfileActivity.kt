@@ -56,12 +56,10 @@ class ProfileActivity : AppCompatActivity() {
         val prev_rented_fetcher = ItemFetcher(prev_rented_items, prev_rented_adapter)
 
         lifecycleScope.launch {
-            renting_fetcher.getRentingItems(16)
-            listing_fetcher.getListingItems(16)
-            prev_rented_fetcher.getPreviouslyRentedItems(16)
+            renting_fetcher.getRentingItems(17)
+            listing_fetcher.getListingItems(17)
+            prev_rented_fetcher.getPreviouslyRentedItems(17)
         }
-
-
 
         val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         navBar.itemIconTintList = null

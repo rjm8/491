@@ -5,6 +5,7 @@ data class RentItemData(
     val rental_date: String,
     val total_price: String,
     val duration: String,
+    val item_name: String,
     val lister: String,
     val renter: String,
     val listing: String,

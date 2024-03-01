@@ -4,9 +4,9 @@ import retrofit2.http.Path
 
 interface ApiService {
 
-    @GET("listings/")
+    @GET("listings/available")
     suspend fun getAllListedItemData(): List<ListedItemData>
-    @GET("listings/{userId}")
+    @GET("listings/available/{userId}")
     suspend fun getListedItemData(@Path("userId") userId: Int): List<ListedItemData>
 
     @GET("rentals/current/{userId}")
