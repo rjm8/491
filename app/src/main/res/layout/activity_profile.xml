@@ -50,7 +50,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listingRecycler"
-                android:layout_width="408dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/prevRentedRecycler"
-                android:layout_width="408dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="16dp"
@@ -70,7 +70,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="314dp"
                 android:layout_height="53dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:padding="10dp"
                 android:text="@string/currently_renting"
                 android:textColor="@color/white"
@@ -82,7 +82,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="363dp"
                 android:layout_height="52dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/currently_listing"
                 android:textSize="25sp"
                 android:textColor="@color/white"
@@ -94,7 +94,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="363dp"
                 android:layout_height="52dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/previously_rented"
                 android:textSize="25sp"
                 android:textColor="@color/white"
