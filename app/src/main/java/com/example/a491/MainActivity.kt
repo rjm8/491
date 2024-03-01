@@ -3,6 +3,7 @@ package com.example.a491
 // Menu Imports
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -16,22 +17,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
+const val SHARED_PREFS = "SHARED_PREFS"
 class MainActivity : AppCompatActivity() {
 
     // Category Menu
     lateinit var categoryMenuLayout: DrawerLayout
     lateinit var categoryMenuDrawerToggle: ActionBarDrawerToggle
     lateinit var categoryView: NavigationView
+    lateinit var sharedpreferences: SharedPreferences
     val items = mutableListOf<Item>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // Implement Fragments
-        /*
-        val supportFragmentManager = supportFragmentManager
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_screen, ItemFragment(), null).commit()*/
+
+        // Check if user is logged in, send to login if not
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+        val username = sharedpreferences.getString(getString(R.string.username_key), null)
+        if (username == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+
 
         val recycler = findViewById<RecyclerView>(R.id.recycleView)
         recycler.layoutManager = GridLayoutManager(this, 2)
