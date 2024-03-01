@@ -53,11 +53,15 @@ class RegisterActivity : AppCompatActivity() {
             val apiService = RetrofitClient.instance.create(ApiService::class.java)
             apiService.postUser(user)
 
+            // authenticate user to receive user id
+            val returnMessage: ReturnMessage = apiService.checkPassword(user)
+
             // store username in sharedpreferences and login
             sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
             val editor = sharedpreferences.edit()
             editor.clear()
             editor.putString(getString(R.string.username_key), user.username)
+            editor.putInt(getString(R.string.user_id_key), returnMessage.user_id)
             editor.apply()
             startActivity(Intent(this, MainActivity::class.java))
         } catch (e: Exception) {

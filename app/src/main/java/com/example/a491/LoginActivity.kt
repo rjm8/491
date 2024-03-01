@@ -12,9 +12,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.a491.api.ApiService
 import com.example.a491.api.RetrofitClient
+import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 
 class LoginActivity : AppCompatActivity() {
@@ -30,6 +32,14 @@ class LoginActivity : AppCompatActivity() {
         createAccount.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+/*
+        val apiService = RetrofitClient.instance.create(ApiService::class.java)
+        var users = listOf<Account>()
+        GlobalScope.launch(Dispatchers.Main){
+            users = getAllUsers(apiService)
+        }
+
+ */
 
         val loginButton = findViewById<Button>(R.id.loginButton)
         loginButton.setOnClickListener {
@@ -47,22 +57,27 @@ class LoginActivity : AppCompatActivity() {
     // Logs in if username/password is valid
     suspend fun checkAccount(username: String, password: String) {
         try {
-            // Get all users from database
+            // send input data to checkPassword API
             val apiService = RetrofitClient.instance.create(ApiService::class.java)
-            val accounts: List<Account> = apiService.getUsers()
+            val credentials = Account(
+                "",
+                "",
+                username,
+                password,
+                "",
+                "",
+                ""
+            )
 
-            // Check if any users match input
-            var valid = 0
-            accounts.forEach { account->
-                if (account.username == username && account.password == password) {
-                    valid = 1
-                }
-            }
-            if (valid == 1) { // if match is found, post username to sharedPreferences and go to main screen
+            // If valid, returns message and user id, throws error otherwise
+            val returnMessage: ReturnMessage = apiService.checkPassword(credentials)
+
+            if (returnMessage.message == "Password is correct") {
                 sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
                 val editor = sharedpreferences.edit()
                 editor.clear()
                 editor.putString(getString(R.string.username_key), username)
+                editor.putInt(getString(R.string.user_id_key), returnMessage.user_id)
                 editor.apply()
                 finish()
             } else {
@@ -71,9 +86,24 @@ class LoginActivity : AppCompatActivity() {
 
         } catch (e: Exception) {
             Log.e("RegisterActivity", "Error: ${e.message}", e)
+            Toast.makeText(this, "Invalid login", Toast.LENGTH_SHORT).show()
         }
 
 
     }
 
+}
+
+class Account (
+    val first_name: String,
+    val last_name: String,
+    val username: String,
+    val password: String,
+    val phone_number: String,
+    val location: String,
+    val payment_method: String
+) {
+}
+
+class ReturnMessage(val message: String, val user_id: Int){
 }
