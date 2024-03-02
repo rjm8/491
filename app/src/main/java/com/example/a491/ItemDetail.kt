@@ -45,8 +45,8 @@ class ItemDetail :AppCompatActivity() {
         itemDesc.text = item.itemDesc
 
         Glide.with(this)
-//            .load(item.itemImageUrl)
-            .load(ContextCompat.getDrawable(this, R.drawable.shekhmus))
+            .load(item.itemImageUrl)
+//            .load(ContextCompat.getDrawable(this, R.drawable.shekhmus))
             .into(itemImageView)
 
         /*

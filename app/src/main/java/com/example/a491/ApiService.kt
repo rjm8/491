@@ -18,9 +18,9 @@ interface ApiService {
     @GET("rentals/previous/{userId}")
     suspend fun getPreviousRentItemData(@Path("userId") userId: Int): List<RentItemData>
 
-    @POST("rapidrentals/listings/")
+    @POST("listings/")
     fun createListing(@Body createListing: Listing): Call<Void>
 
-    @POST("rapidrentals/rentals/")
+    @POST("rentals/")
     fun createRental(@Body createRental: Rental): Call<Void>
 }

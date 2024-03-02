@@ -1,9 +1,6 @@
 package com.example.a491
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
-import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +20,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
         GlobalScope.launch(Dispatchers.Main) {
             results = getListedItems("https://rapidrentals-9797a640fd53.herokuapp.com/rapidrentals/", results)
             val itemsRawJSON : String = results.toString()
+            Log.d("response", itemsRawJSON)
 
             // Gson used to get data from @SerializedName tags and fill into model objects
             val gson = Gson()
@@ -110,7 +108,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
                 jsonObject.put("itemDesc", userData.description)
                 jsonObject.put("max_duration", userData.max_duration)
                 jsonObject.put("lister", userData.lister)
-
+                jsonObject.put("image_url", userData.image_url)
                 results.put(jsonObject)
             }
         } catch (e: Exception) {
