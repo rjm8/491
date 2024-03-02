@@ -5,7 +5,7 @@ data class ListedItemData(
     val rental_price_per_day: String,
     val retail_price: String,
     val item_name: String,
-    val val_image: String,
+    val image_url: String,
     val description: String,
     val max_duration: String,
     val lister: Int

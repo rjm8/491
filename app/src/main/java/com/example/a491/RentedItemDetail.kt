@@ -34,7 +34,7 @@ class RentedItemDetail :AppCompatActivity() {
         itemDesc.text = item.itemDesc
 
         Glide.with(this)
-            .load(ContextCompat.getDrawable(this, R.drawable.shekhmus))
+            .load(item.itemImageUrl)
             .into(itemImageView)
 
         /*

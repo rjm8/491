@@ -58,8 +58,8 @@ class ItemRecyclerViewAdapter(
 
         /* Set image using Glide */
         Glide.with(holder.mView)
-//            .load(item.itemImageUrl)
-            .load(ContextCompat.getDrawable(context, R.drawable.shekhmus))
+            .load(item.itemImageUrl)
+//            .load(ContextCompat.getDrawable(context, R.drawable.shekhmus))
             .centerInside()
             .placeholder(R.drawable.loading) // Loading Image
             .error(R.drawable.placeholder) // Error Image for when image is isn't found

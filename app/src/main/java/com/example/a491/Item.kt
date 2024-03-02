@@ -16,7 +16,7 @@ class Item (
     @SerializedName("itemDesc")
     val itemDesc: String? = null,
 
-    @SerializedName("itemImage")
+    @SerializedName("image_url")
     var itemImageUrl: String? = null
 ) : java.io.Serializable {
 }
