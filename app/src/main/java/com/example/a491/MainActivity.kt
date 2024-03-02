@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         fetcher.getItems()
 
 
-
         /*
         * Category Menu
         */

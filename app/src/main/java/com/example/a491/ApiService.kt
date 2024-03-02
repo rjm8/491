@@ -1,5 +1,8 @@
 package com.example.a491
+import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
@@ -14,4 +17,10 @@ interface ApiService {
 
     @GET("rentals/previous/{userId}")
     suspend fun getPreviousRentItemData(@Path("userId") userId: Int): List<RentItemData>
+
+    @POST("rapidrentals/listings/")
+    fun createListing(@Body createListing: Listing): Call<Void>
+
+    @POST("rapidrentals/rentals/")
+    fun createRental(@Body createRental: Rental): Call<Void>
 }
