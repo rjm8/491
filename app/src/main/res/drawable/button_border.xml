@@ -8,7 +8,7 @@
         />
 
     <!-- Optional: Fill color inside the border -->
-    <solid android:color="#C82828" />
+    <solid android:color="@color/secondary" />
 
     <!-- Optional: Corner radius -->
     <corners android:radius="16dp" />

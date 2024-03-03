@@ -103,7 +103,6 @@ class RentFormActivity : AppCompatActivity() {
                 // TODO:  SEND ITEMS TO DATABASE
                 sendToFirebase(localUri) { success ->
                     if (success) {
-                        // Proceed with the Retrofit call to create the listing
                         val listing = Listing(
                             rental_price_per_day = rentalPrice,
                             retail_price = retailPrice,
@@ -120,7 +119,6 @@ class RentFormActivity : AppCompatActivity() {
                             override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {
                                 if (response.isSuccessful) {
                                     Log.d(TAG, "Listing created successfully")
-                                    // Handle successful listing creation
                                 } else {
                                     Log.e(TAG, "Failed to create listing: ${response.errorBody()?.string()}")
                                 }
@@ -131,7 +129,6 @@ class RentFormActivity : AppCompatActivity() {
                             }
                         })
                     } else {
-                        // Handle failure
                         Toast.makeText(this, "Failed to upload image or update Firestore", Toast.LENGTH_SHORT).show()
                     }
                 }

@@ -28,6 +28,7 @@ class ProfileActivity : AppCompatActivity() {
         // get username from shared preferences
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         val username = sharedpreferences.getString(getString(R.string.username_key), "defUsername")
+        val user_id = sharedpreferences.getInt(getString(R.string.user_id_key), -1)
 
 
         val usernameView = findViewById<TextView>(R.id.username)
@@ -68,9 +69,9 @@ class ProfileActivity : AppCompatActivity() {
 
 
         lifecycleScope.launch {
-            renting_fetcher.getRentingItems(17)
-            listing_fetcher.getListingItems(17)
-            prev_rented_fetcher.getPreviouslyRentedItems(17)
+            renting_fetcher.getRentingItems(user_id)
+            listing_fetcher.getListingItems(user_id)
+            prev_rented_fetcher.getPreviouslyRentedItems(user_id)
         }
 
         val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
