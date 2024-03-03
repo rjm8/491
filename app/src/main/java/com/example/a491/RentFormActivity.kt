@@ -1,6 +1,8 @@
 package com.example.a491
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -37,11 +39,15 @@ class RentFormActivity : AppCompatActivity() {
     private lateinit var localUri: Uri
     private var constraintSet = ConstraintSet()
     private var imageUrl: String = ""
+    lateinit var sharedpreferences: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rent_form)
+
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+        val user_id = sharedpreferences.getInt(getString(R.string.user_id_key), -1)
 
         rentImageUpload = findViewById(R.id.formUploadImage)
         rentItemName = findViewById(R.id.formProductNameText)
@@ -89,7 +95,6 @@ class RentFormActivity : AppCompatActivity() {
         }
 
         rentSubmitForm.setOnClickListener {
-            val userId = 27  // this should be the actual user id
             // image url stored in imageUrl
             val itemName = rentItemName.getText().toString()
             val itemDescription = rentItemDescription.getText().toString()
@@ -110,7 +115,7 @@ class RentFormActivity : AppCompatActivity() {
                             image_url = imageUrl,
                             description = itemDescription,
                             max_duration = duration.toInt(),
-                            lister = userId
+                            lister = user_id
                         )
                         val apiService = RetrofitClient.instance.create(ApiService::class.java)
                         val call = apiService.createListing(listing)
