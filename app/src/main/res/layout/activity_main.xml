@@ -6,7 +6,7 @@
     android:id="@+id/category_menu_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CA5555"
+    android:background="@color/primary"
     tools:context=".MainActivity">
 
     <!-- Main content area using ConstraintLayout -->
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="48dp"
-            android:background="#CA5555"
+            android:background="@color/primary"
             app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

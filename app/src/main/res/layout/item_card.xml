@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:layout_marginBottom="15dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         android:layout_gravity="center">
 
@@ -40,7 +41,8 @@
             android:text="@string/itemtitle"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="3dp"/>
 
         <TextView
             android:id="@+id/itemPrice"
@@ -53,6 +55,7 @@
             android:textColor="@color/black"
             android:gravity="end"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="3dp" />
     </LinearLayout>
 </LinearLayout>

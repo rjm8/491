@@ -19,7 +19,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#C25651">
+            android:background="@color/primary">
 
             <Button
                 android:id="@+id/formUploadImage"
@@ -27,7 +27,7 @@
                 android:layout_height="200dp"
                 android:text="Upload Image \n +"
                 android:textSize="20sp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:padding="5dp"
                 android:background="@drawable/rent_button"
                 android:textAllCaps="false"
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Product Name"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="@id/formProductNameText"
                 app:layout_constraintTop_toBottomOf="@+id/formUploadImage"/>
@@ -68,7 +68,7 @@
                 android:padding="16dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:hint="Enter your Product Name"
                 android:inputType="text"
                 android:text=""
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:text="Description"
 
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="@id/formDescriptionText"
                 app:layout_constraintTop_toBottomOf="@+id/formProductNameText"/>
@@ -95,7 +95,7 @@
                 android:padding="16dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:hint="Describe your Product"
                 android:inputType="text"
                 android:text=""
@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Retail Price"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="@id/formPriceText"
                 app:layout_constraintTop_toBottomOf="@+id/formDescriptionText"/>
@@ -121,7 +121,7 @@
                 android:padding="16dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:hint="Enter Retail Price"
                 android:inputType="numberDecimal"
                 android:text=""
@@ -135,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rental Price Per Day"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="@id/formPPDText"
                 app:layout_constraintTop_toBottomOf="@+id/formPriceText"/>
@@ -147,7 +147,7 @@
                 android:padding="16dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:hint="Enter Rental Price Per Day"
                 android:inputType="numberDecimal"
                 android:text=""
@@ -161,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Duration (days)"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="@id/formDurationText"
                 app:layout_constraintTop_toBottomOf="@+id/formPPDText"/>
@@ -173,7 +173,7 @@
                 android:padding="16dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:hint="Enter Duration"
                 android:inputType="number"
                 android:text=""
