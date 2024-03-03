@@ -23,4 +23,13 @@ interface ApiService {
 
     @POST("rentals/")
     fun createRental(@Body createRental: Rental): Call<Void>
+
+    @GET("users/")
+    suspend fun getUsers(): List<Account>
+
+    @POST("users/")
+    suspend fun postUser(@Body userData: Account)
+
+    @POST("check-password/")
+    suspend fun checkPassword(@Body credentials: Account): ReturnMessage
 }
