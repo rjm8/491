@@ -26,4 +26,5 @@
     <string name="phone_number">Phone Number</string>
     <string name="payment_method">Payment Method</string>
     <string name="user_id_key">user id</string>
+    <string name="user_location_string">user location</string>
 </resources>
