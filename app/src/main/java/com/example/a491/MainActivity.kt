@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         val recycler = findViewById<RecyclerView>(R.id.recycleView)
         recycler.layoutManager = GridLayoutManager(this, 2)
 
-        val itemAdapter = ItemRecyclerViewAdapter(items, this, true, false)
+        val itemAdapter = ItemRecyclerViewAdapter(items, this, true, false, false, false)
         recycler.adapter = itemAdapter
 
         val fetcher = ItemFetcher(items, itemAdapter)

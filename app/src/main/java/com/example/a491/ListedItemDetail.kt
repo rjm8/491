@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -16,7 +17,7 @@ import retrofit2.Call
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class ItemDetail :AppCompatActivity() {
+class ListedItemDetail :AppCompatActivity() {
     private lateinit var itemImageView : ImageView
     private lateinit var itemTitle : TextView
     private lateinit var itemPrice : TextView
@@ -24,12 +25,12 @@ class ItemDetail :AppCompatActivity() {
     private lateinit var itemRetailPrice: TextView
     private lateinit var itemMaxDuration: TextView
     private lateinit var itemDesc : TextView
-    private lateinit var itemBuy : Button
+    private lateinit var itemEdit : Button
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.item_detail)
+        setContentView(R.layout.listing_item_detail)
 
         itemImageView = findViewById(R.id.itemImage)
         itemTitle = findViewById(R.id.itemTitle)
@@ -38,7 +39,7 @@ class ItemDetail :AppCompatActivity() {
         itemRetailPrice = findViewById(R.id.itemRetailPrice)
         itemMaxDuration = findViewById(R.id.itemMaxDuration)
         itemDesc = findViewById(R.id.itemDescription)
-        itemBuy = findViewById(R.id.buyButton)
+        itemEdit = findViewById(R.id.editButton)
 
         val item = intent.getSerializableExtra(ITEM_EXTRA) as Item
 
@@ -62,53 +63,8 @@ class ItemDetail :AppCompatActivity() {
         /*
         * Posting Rental to Database
         */
-        itemBuy.setOnClickListener {
-            val today = LocalDate.now()
-            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            val date = today.format(formatter)
-            val price = "500.00"
-            val duration = 10 // this should change and be displayed on the page
-            val renter = 17 // this should be the userID of the currently logged in user
-            val listing = 1 // this should be the listingID which should be associated with this page
-            val lister = 16 // this should be the userID of the lister which should be displayed on this page
-            val tip = "5.00"
-            val itemName = itemTitle.text.toString()
-            val listerLocation = "Shekhmus's home" // this should be associated w lister userID
-            val renterLocation = "Shekhmus's friend's house" // this should be associated w renter userID
-
-            val rental = Rental(
-                rental_date = date,
-                total_price = price,
-                duration = duration,
-                lister = lister,
-                renter = renter,
-                listing = listing,
-                tip_amount_for_driver = tip,
-                item_name = itemName,
-                lister_location = listerLocation,
-                renter_location = renterLocation
-            )
-
-            val apiService = RetrofitClient.instance.create(ApiService::class.java)
-            val call = apiService.createRental(rental)
-
-            call.enqueue(object : retrofit2.Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {
-                    if (response.isSuccessful) {
-                        Log.d("API", "Item rented successfully")
-                    } else {
-                        Log.e("API", "Failed to rent item: ${response.errorBody()?.string()}")
-                    }
-                }
-
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.e("API", "Failed to rent item", t)
-                }
-            })
-
-            // TODO: Make an intent that goes to the item's page after it is created or back to main screen
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        itemEdit.setOnClickListener {
+            Toast.makeText(this, "Edit Listing", Toast.LENGTH_SHORT).show()
         }
 
 

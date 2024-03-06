@@ -44,7 +44,7 @@
 
             <TextView
                 android:id="@+id/itemDescription"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
@@ -74,8 +74,6 @@
                 android:layout_width="200dp"
                 android:layout_height="36dp"
                 android:layout_margin="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
                 android:gravity="end"
                 android:padding="4dp"
                 android:paddingEnd="12dp"
@@ -115,17 +113,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/itemLocation" />
 
             <Button
-                android:id="@+id/buyButton"
+                android:id="@+id/editButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_border"
-                android:text="Rent"
-                android:textColor="@color/white"
                 android:layout_marginTop="40dp"
+                android:background="@drawable/button_border"
+                android:text="Edit Listing"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/bottom_guideline"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/itemDescription"
-                app:layout_constraintBottom_toTopOf="@id/bottom_guideline" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/bottom_guideline"

@@ -29,10 +29,16 @@
             android:name=".ItemDetail"
             android:exported="true" />
         <activity
+            android:name=".ListedItemDetail"
+            android:exported="true" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".RentedItemDetail"
+            android:name=".CurrentlyRentItemDetail"
+            android:exported="true" />
+        <activity
+            android:name=".PreviouslyRentItemDetail"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

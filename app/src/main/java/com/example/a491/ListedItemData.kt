@@ -6,7 +6,9 @@ data class ListedItemData(
     val retail_price: String,
     val item_name: String,
     val image_url: String,
+    val location: String,
     val description: String,
+    val available: Boolean,
     val max_duration: String,
     val lister: Int
 )

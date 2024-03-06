@@ -17,6 +17,51 @@ class Item (
     val itemDesc: String? = null,
 
     @SerializedName("image_url")
-    var itemImageUrl: String? = null
-) : java.io.Serializable {
+    var itemImageUrl: String? = null,
+
+    @SerializedName("itemRetailPrice")
+    var itemRetailPrice: String? = null,
+
+    @SerializedName("itemLocation")
+    var itemLocation: String? = null,
+
+    @SerializedName("itemListerLocation")
+    val itemListerLocation: String? = null,
+
+    @SerializedName("itemRenterLocation")
+    val itemRenterLocation: String? = null,
+
+    @SerializedName("itemMaxDuration")
+    var itemMaxDuration: String? = null,
+
+    @SerializedName("itemTipAmount")
+    val itemTipAmount: String? = null,
+
+    @SerializedName("itemRentDate")
+    val itemRentDate: String? = null,
+
+    @SerializedName("itemReturned")
+    val itemReturned: Boolean? = null,
+
+    @SerializedName("itemDelivered")
+    val itemDelivered: Boolean? = null,
+
+    @SerializedName("itemNotifyLister")
+    val itemNotifyLister: Boolean? = null,
+
+    @SerializedName("itemDuration")
+    val itemDuration: Int? = null,
+
+    @SerializedName("itemLister")
+    val itemLister: String? = null,
+
+    @SerializedName("itemRenter")
+    val itemRenter: String? = null,
+
+    @SerializedName("itemListing")
+    val itemListing: Int? = null,
+
+    @SerializedName("itemDriver")
+    val itemDriver: String? = null
+    ) : java.io.Serializable {
 }
