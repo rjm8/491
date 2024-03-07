@@ -1,6 +1,8 @@
 package com.example.a491
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +27,7 @@ class ItemDetail :AppCompatActivity() {
     private lateinit var itemMaxDuration: TextView
     private lateinit var itemDesc : TextView
     private lateinit var itemBuy : Button
+    private lateinit var sharedPreferences: SharedPreferences
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +44,7 @@ class ItemDetail :AppCompatActivity() {
         itemBuy = findViewById(R.id.buyButton)
 
         val item = intent.getSerializableExtra(ITEM_EXTRA) as Item
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
 
         itemTitle.text = item.itemTitle
         val price = "$" + item.itemPrice + " per day"
@@ -76,17 +80,21 @@ class ItemDetail :AppCompatActivity() {
             val listerLocation = "Shekhmus's home" // this should be associated w lister userID
             val renterLocation = "Shekhmus's friend's house" // this should be associated w renter userID
 
+            Log.d("TEST", item.itemListing.toString())
+
+
+
             val rental = Rental(
                 rental_date = date,
-                total_price = price,
+                total_price = item.itemPrice,
                 duration = duration,
-                lister = lister,
-                renter = renter,
-                listing = listing,
+                lister = item.itemLister,
+                renter = sharedPreferences.getInt(getString(R.string.user_id_key), -1),
+                listing = item.itemListing,
                 tip_amount_for_driver = tip,
-                item_name = itemName,
-                lister_location = listerLocation,
-                renter_location = renterLocation
+                item_name = item.itemTitle,
+                lister_location = item.itemLocation,
+                renter_location = sharedPreferences.getString(getString(R.string.user_location_string), "no loc")
             )
 
             val apiService = RetrofitClient.instance.create(ApiService::class.java)

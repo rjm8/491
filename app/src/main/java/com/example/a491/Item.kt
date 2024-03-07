@@ -53,7 +53,7 @@ class Item (
     val itemDuration: Int? = null,
 
     @SerializedName("itemLister")
-    val itemLister: String? = null,
+    val itemLister: Int? = null,
 
     @SerializedName("itemRenter")
     val itemRenter: String? = null,
