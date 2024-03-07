@@ -142,7 +142,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
                 jsonObject.put("itemLocation", userData.location)
                 jsonObject.put("itemMaxDuration", userData.max_duration)
                 jsonObject.put("lister", userData.lister)
-
+                jsonObject.put("itemAvailable", userData.available)
                 results.put(jsonObject)
             }
         } catch (e: Exception) {
