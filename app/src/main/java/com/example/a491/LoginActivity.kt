@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
                 editor.putString(getString(R.string.username_key), username)
                 editor.putInt(getString(R.string.user_id_key), returnMessage.user_id)
                 editor.apply()
-                finish()
+                startActivity(Intent(this, ProfileActivity::class.java))
             } else {
                 Toast.makeText(this, "Invalid login", Toast.LENGTH_SHORT).show()
             }
