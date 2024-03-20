@@ -1,7 +1,7 @@
 package com.example.a491
 
 data class ListedItemData(
-    val id: Int,
+    val listing_id: Int,
     val rental_price_per_day: String,
     val retail_price: String,
     val item_name: String,

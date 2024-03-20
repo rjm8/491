@@ -32,7 +32,7 @@ class Item (
     val itemRenterLocation: String? = null,
 
     @SerializedName("itemMaxDuration")
-    var itemMaxDuration: String? = null,
+    var itemMaxDuration: Int? = null,
 
     @SerializedName("itemTipAmount")
     val itemTipAmount: String? = null,
@@ -53,13 +53,16 @@ class Item (
     val itemDuration: Int? = null,
 
     @SerializedName("itemLister")
-    val itemLister: String? = null,
+    val itemLister: Int? = null,
 
     @SerializedName("itemRenter")
     val itemRenter: String? = null,
 
     @SerializedName("itemListing")
     val itemListing: Int? = null,
+
+    @SerializedName("itemAvailable")
+    var itemAvailable: Boolean = true,
 
     @SerializedName("itemDriver")
     val itemDriver: String? = null

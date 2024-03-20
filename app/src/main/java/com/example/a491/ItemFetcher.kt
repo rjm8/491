@@ -101,7 +101,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
 
             userList.forEach {userData ->
                 val jsonObject = JSONObject()
-                jsonObject.put("id", userData.id)
+                jsonObject.put("itemListing", userData.listing_id)
                 jsonObject.put("itemTitle", userData.item_name)
                 jsonObject.put("itemPrice", userData.rental_price_per_day)
                 jsonObject.put("itemDesc", userData.description)
@@ -109,7 +109,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
                 jsonObject.put("itemRetailPrice", userData.retail_price)
                 jsonObject.put("itemLocation", userData.location)
                 jsonObject.put("itemMaxDuration", userData.max_duration)
-                jsonObject.put("lister", userData.lister)
+                jsonObject.put("itemLister", userData.lister)
 
                 results.put(jsonObject)
             }
@@ -133,7 +133,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
             userList.forEach {userData ->
                 Log.d("itemFetcher", "item_name: ${userData.item_name}")
                 val jsonObject = JSONObject()
-                jsonObject.put("id", userData.id)
+                jsonObject.put("id", userData.listing_id)
                 jsonObject.put("itemTitle", userData.item_name)
                 jsonObject.put("itemPrice", userData.rental_price_per_day)
                 jsonObject.put("itemDesc", userData.description)
@@ -142,7 +142,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
                 jsonObject.put("itemLocation", userData.location)
                 jsonObject.put("itemMaxDuration", userData.max_duration)
                 jsonObject.put("lister", userData.lister)
-
+                jsonObject.put("itemAvailable", userData.available)
                 results.put(jsonObject)
             }
         } catch (e: Exception) {
