@@ -86,7 +86,7 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
                     startActivity(Intent(this, RentFormActivity::class.java))
                 }
                 R.id.profileButton -> {
-                    finish()
+                    startActivity(Intent(this, ProfileActivity::class.java))
                 }
             }
             navBar.itemIconTintList = null

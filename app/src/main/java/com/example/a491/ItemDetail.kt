@@ -125,7 +125,8 @@ class ItemDetail :AppCompatActivity() {
 
 
             // TODO: Make an intent that goes to the item's page after it is created or back to main screen
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, CurrentlyRentItemDetail::class.java)
+            intent.putExtra(ITEM_EXTRA, item)
             startActivity(intent)
         }
 
