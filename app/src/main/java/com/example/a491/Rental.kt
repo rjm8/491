@@ -11,4 +11,5 @@ data class Rental(
     val lister: Int?,
     val renter: Int?,
     val listing: Int?,
+    val delivered: Boolean,
 )

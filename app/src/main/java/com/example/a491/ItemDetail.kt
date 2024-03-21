@@ -18,8 +18,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -75,19 +73,9 @@ class ItemDetail :AppCompatActivity() {
             val today = LocalDate.now()
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val date = today.format(formatter)
-            val price = "500.00"
             val duration = 10 // this should change and be displayed on the page
-            val renter = 17 // this should be the userID of the currently logged in user
-            val listing = 1 // this should be the listingID which should be associated with this page
-            val lister = 16 // this should be the userID of the lister which should be displayed on this page
             val tip = "5.00"
-            val itemName = itemTitle.text.toString()
-            val listerLocation = "Shekhmus's home" // this should be associated w lister userID
-            val renterLocation = "Shekhmus's friend's house" // this should be associated w renter userID
-
             Log.d("TEST", item.itemListing.toString())
-
-
 
             val rental = Rental(
                 rental_date = date,
@@ -98,6 +86,7 @@ class ItemDetail :AppCompatActivity() {
                 listing = item.itemListing,
                 tip_amount_for_driver = tip,
                 item_name = item.itemTitle,
+                delivered = true,
                 lister_location = item.itemLocation,
                 renter_location = sharedPreferences.getString(getString(R.string.user_location_string), "no loc")
             )
@@ -122,11 +111,10 @@ class ItemDetail :AppCompatActivity() {
                 }
             })
 
-
-
             // TODO: Make an intent that goes to the item's page after it is created or back to main screen
-            val intent = Intent(this, CurrentlyRentItemDetail::class.java)
-            intent.putExtra(ITEM_EXTRA, item)
+//            val intent = Intent(this, CurrentlyRentItemDetail::class.java)
+//            intent.putExtra(ITEM_EXTRA, item)
+            val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
 
