@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/banner"
-                android:text="Currently renting"
+                android:text="@string/currently_renting"
                 android:textSize="24sp"
                 android:background="#a44343"
                 app:layout_constraintTop_toTopOf="parent"

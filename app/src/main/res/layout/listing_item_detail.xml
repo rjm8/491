@@ -17,6 +17,21 @@
             android:layout_height="wrap_content"
             android:background="@color/primary">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/banner"
+                android:text="@string/currently_listing"
+                android:textSize="24sp"
+                android:background="#a44343"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+
+                />
+
             <ImageView
                 android:id="@+id/itemImage"
                 android:layout_width="match_parent"
@@ -24,7 +39,7 @@
                 android:layout_marginTop="12dp"
                 android:contentDescription="@string/itemtitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/banner"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
