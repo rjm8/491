@@ -13,6 +13,9 @@ interface ApiService {
     @GET("listings/available/{userId}")
     suspend fun getListedItemData(@Path("userId") userId: Int): List<ListedItemData>
 
+    @GET("listings/others/{userId}/")
+    suspend fun getOtherListedItemData(@Path("userId") userId: Int): List<ListedItemData>
+
     @GET("rentals/current/{userId}")
     suspend fun getCurrentRentItemData(@Path("userId") userId: Int): List<RentItemData>
 

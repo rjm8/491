@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         // Check if user is logged in, send to login if not
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         val username = sharedpreferences.getString(getString(R.string.username_key), null)
+        val userId = sharedpreferences.getInt("user id", -1)
         if (username == null) {
             startActivity(Intent(this, LoginActivity::class.java))
         }
@@ -46,8 +47,8 @@ class MainActivity : AppCompatActivity() {
         recycler.adapter = itemAdapter
 
         val fetcher = ItemFetcher(items, itemAdapter)
-        fetcher.getItems()
-
+        fetcher.getItems(userId)
+        Log.e("shekhmus", userId.toString())
 
         /*
         * Category Menu

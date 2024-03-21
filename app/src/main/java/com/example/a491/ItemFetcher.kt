@@ -15,17 +15,17 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
     val items = passedItems
     val itemAdapter = passedAdapter
 
-    fun getItems() {
+    fun getItems(userId: Int) {
         var results = JSONArray()
         GlobalScope.launch(Dispatchers.Main) {
-            results = getListedItems("https://rapidrentals-9797a640fd53.herokuapp.com/rapidrentals/", results)
+            results = getListedItems("https://rapidrentals-9797a640fd53.herokuapp.com/rapidrentals/", results, userId)
             val itemsRawJSON : String = results.toString()
             Log.d("response", itemsRawJSON)
 
             // Gson used to get data from @SerializedName tags and fill into model objects
             val gson = Gson()
             val arrayItemType = object : TypeToken<List<Item>>() {}.type
-            val models : List<Item> = gson.fromJson(itemsRawJSON, arrayItemType)
+            val models : List<Item> = gson.fromJson(itemsRawJSON, arrayItemType, )
 
             items.addAll(models)
             itemAdapter.notifyDataSetChanged()
@@ -87,7 +87,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
         }
     }
 
-    suspend fun getListedItems(endpoint: String, results: JSONArray) : JSONArray {
+    suspend fun getListedItems(endpoint: String, results: JSONArray, userId: Int) : JSONArray {
         try {
             val retrofit = Retrofit.Builder()
                 .baseUrl(endpoint)
@@ -97,7 +97,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
             val apiService = retrofit.create(ApiService::class.java)
 
             // Make the API call
-            val userList = apiService.getAllListedItemData()
+            val userList = apiService.getOtherListedItemData(userId = userId)
 
             userList.forEach {userData ->
                 val jsonObject = JSONObject()
