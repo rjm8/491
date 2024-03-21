@@ -46,7 +46,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
             val arrayItemType = object : TypeToken<List<Item>>() {}.type
             val models: List<Item> = gson.fromJson(itemsRawJSON, arrayItemType)
 
-            items.addAll(models)
+            items.addAll(models.reversed())
             itemAdapter.notifyDataSetChanged()
         }
     }
@@ -63,7 +63,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
             val gson = Gson()
             val arrayItemType = object : TypeToken<List<Item>>() {}.type
             val models : List<Item> = gson.fromJson(itemsRawJSON, arrayItemType)
-            items.addAll(models)
+            items.addAll(models.reversed())
             itemAdapter.notifyDataSetChanged()
         }
     }
@@ -82,7 +82,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
             val arrayItemType = object : TypeToken<List<Item>>() {}.type
             val models: List<Item> = gson.fromJson(itemsRawJSON, arrayItemType)
 
-            items.addAll(models)
+            items.addAll(models.reversed())
             itemAdapter.notifyDataSetChanged()
         }
     }
