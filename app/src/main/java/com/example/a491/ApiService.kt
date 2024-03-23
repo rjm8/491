@@ -45,4 +45,7 @@ interface ApiService {
 
     @POST("listings/make-unavailable/{pk}/")
     suspend fun makeListingUnavailable(@Path("pk") listing_id: String?)
+
+    @POST("returns/")
+    suspend fun createReturn(@Body returnItem: Return)
 }
