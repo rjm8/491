@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.a491.api.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class CurrentlyRentItemDetail :AppCompatActivity() {
     private lateinit var itemImageView : ImageView
@@ -67,9 +70,11 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
             .load(item.itemImageUrl)
             .into(itemImageView)
 
-        returnButton = findViewById(R.id.editButton)
+        returnButton = findViewById(R.id.returnButton)
         returnButton.setOnClickListener {
-
+            GlobalScope.launch(Dispatchers.Main) {
+                setItemAvailable(item)
+            }
         }
 
         /*
@@ -94,24 +99,14 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
         }
     }
 
+
     suspend fun setRentalReturned() {
 
     }
     suspend fun setItemAvailable(item: Item) {
-        val updatedListing = Listing(
-            rental_price_per_day = item.itemPrice,
-            retail_price = item.itemRetailPrice,
-            item_name = item.itemTitle,
-            image_url = item.itemImageUrl,
-            description = item.itemDesc,
-            max_duration = item.itemMaxDuration,
-            lister = item.itemLister,
-            location = item.itemLocation,
-            available = true
-        )
         val apiService = RetrofitClient.instance.create(ApiService::class.java)
         try {
-            apiService.updateListing(item.itemListing.toString(), updatedListing)
+            apiService.makeListingAvailable(item.itemListing.toString(),)
 
             Log.d("API", "Listing updated successfully")
         } catch (e: Exception) {
