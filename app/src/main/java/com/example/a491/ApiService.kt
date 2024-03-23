@@ -39,4 +39,10 @@ interface ApiService {
 
     @PUT("listings/{pk}/")
     suspend fun updateListing(@Path("pk") listing_id: String?, @Body listing: Listing)
+
+    @POST("listings/make-available/{pk}/")
+    suspend fun makeListingAvailable(@Path("pk") listing_id: String?)
+
+    @POST("listings/make-unavailable/{pk}/")
+    suspend fun makeListingUnavailable(@Path("pk") listing_id: String?)
 }
