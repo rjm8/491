@@ -80,6 +80,7 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
             GlobalScope.launch(Dispatchers.Main) {
                 setItemAvailable(item)
                 createReturn(item)
+                setRentalReturned(item)
             }
         }
 
@@ -118,7 +119,6 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
             tip_amount = item.itemTipAmount,
             return_date = date
         )
-        Log.d("Huh", "id: ${newReturn.rental_id.toString()}, location1: ${newReturn.location_of_lister}, location: ${newReturn.location_of_renter}, tip: ${newReturn.tip_amount}, date: ${newReturn.return_date}")
 
         val apiService = RetrofitClient.instance.create(ApiService::class.java)
         try {
@@ -133,11 +133,24 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
     suspend fun setItemAvailable(item: Item) {
         val apiService = RetrofitClient.instance.create(ApiService::class.java)
         try {
-            apiService.makeListingAvailable(item.itemListing.toString(),)
+            apiService.makeListingAvailable(item.itemListing.toString())
 
             Log.d("API", "Listing updated successfully")
         } catch (e: Exception) {
             Log.e("API", "Listing could not be updated")
+            Log.e("API", "Error: ${e.message}", e)
+        }
+    }
+
+    suspend fun setRentalReturned(item: Item) {
+        Log.d("huh", item.rental_id.toString())
+        val apiService = RetrofitClient.instance.create(ApiService::class.java)
+        try {
+            apiService.makeRentalReturned(item.rental_id.toString())
+
+            Log.d("API", "Rental updated successfully")
+        } catch (e: Exception) {
+            Log.e("API", "Rental could not be updated")
             Log.e("API", "Error: ${e.message}", e)
         }
     }

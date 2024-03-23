@@ -48,4 +48,7 @@ interface ApiService {
 
     @POST("returns/")
     suspend fun createReturn(@Body returnItem: Return)
+
+    @POST("rentals/make-returned/{pk}/")
+    suspend fun makeRentalReturned(@Path("pk") rental_id: String?)
 }
