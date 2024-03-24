@@ -17,6 +17,21 @@
             android:layout_height="wrap_content"
             android:background="@color/primary">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/banner"
+                android:text="@string/currently_listing"
+                android:textSize="24sp"
+                android:background="#a44343"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+
+                />
+
             <ImageView
                 android:id="@+id/itemImage"
                 android:layout_width="match_parent"
@@ -24,7 +39,7 @@
                 android:layout_marginTop="12dp"
                 android:contentDescription="@string/itemtitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/banner"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
@@ -44,7 +59,7 @@
 
             <TextView
                 android:id="@+id/itemDescription"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
@@ -74,8 +89,6 @@
                 android:layout_width="200dp"
                 android:layout_height="36dp"
                 android:layout_margin="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
                 android:gravity="end"
                 android:padding="4dp"
                 android:paddingEnd="12dp"
@@ -115,17 +128,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/itemLocation" />
 
             <Button
-                android:id="@+id/buyButton"
+                android:id="@+id/editButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_border"
-                android:text="Rent"
-                android:textColor="@color/white"
                 android:layout_marginTop="40dp"
+                android:background="@drawable/button_border"
+                android:text="Edit Listing"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/bottom_guideline"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/itemDescription"
-                app:layout_constraintBottom_toTopOf="@id/bottom_guideline" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/bottom_guideline"

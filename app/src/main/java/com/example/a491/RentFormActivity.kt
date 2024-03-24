@@ -48,6 +48,7 @@ class RentFormActivity : AppCompatActivity() {
 
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         val user_id = sharedpreferences.getInt(getString(R.string.user_id_key), -1)
+        val user_location = sharedpreferences.getString(getString(R.string.user_location_string), "no loc")
 
         rentImageUpload = findViewById(R.id.formUploadImage)
         rentItemName = findViewById(R.id.formProductNameText)
@@ -115,7 +116,8 @@ class RentFormActivity : AppCompatActivity() {
                             image_url = imageUrl,
                             description = itemDescription,
                             max_duration = duration.toInt(),
-                            lister = user_id
+                            lister = user_id,
+                            location = user_location
                         )
                         val apiService = RetrofitClient.instance.create(ApiService::class.java)
                         val call = apiService.createListing(listing)

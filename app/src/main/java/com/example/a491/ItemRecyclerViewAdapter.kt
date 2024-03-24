@@ -4,11 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -17,7 +15,9 @@ class ItemRecyclerViewAdapter(
     private val items: List<Item>,
     private val context: Context,
     private val vertical: Boolean,
-    private val currently_renting: Boolean
+    private val currently_renting: Boolean,
+    private val listing: Boolean,
+    private val previously_rented: Boolean
     )
     : RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -69,7 +69,11 @@ class ItemRecyclerViewAdapter(
             //TODO: open item page
             val intent: Intent
             if (currently_renting) {
-                intent = Intent(context, RentedItemDetail::class.java)
+                intent = Intent(context, CurrentlyRentItemDetail::class.java)
+            } else if (listing) {
+                intent = Intent(context, ListedItemDetail::class.java)
+            } else if (previously_rented){
+                intent = Intent(context, PreviouslyRentItemDetail::class.java)
             } else {
                 intent = Intent(context, ItemDetail::class.java)
             }

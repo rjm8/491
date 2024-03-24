@@ -43,9 +43,9 @@ class ProfileActivity : AppCompatActivity() {
         prev_rented_recycler.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 
 
-        val renting_adapter = ItemRecyclerViewAdapter(renting_items, this, false, true)
-        val listing_adapter = ItemRecyclerViewAdapter(listing_items, this, false, false)
-        val prev_rented_adapter = ItemRecyclerViewAdapter(prev_rented_items, this, false, false)
+        val renting_adapter = ItemRecyclerViewAdapter(renting_items, this, false, true, false, false)
+        val listing_adapter = ItemRecyclerViewAdapter(listing_items, this, false, false, true, false)
+        val prev_rented_adapter = ItemRecyclerViewAdapter(prev_rented_items, this, false, false, false, true)
 
         renting_recycler.adapter = renting_adapter
         listing_recycler.adapter = listing_adapter
