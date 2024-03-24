@@ -65,6 +65,9 @@ class Item (
     var itemAvailable: Boolean = true,
 
     @SerializedName("itemDriver")
-    val itemDriver: String? = null
+    val itemDriver: String? = null,
+
+    @SerializedName("rental_id")
+    val rental_id: Int? = null
     ) : java.io.Serializable {
 }

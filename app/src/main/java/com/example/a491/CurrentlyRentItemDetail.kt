@@ -1,15 +1,22 @@
 package com.example.a491
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.a491.api.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class CurrentlyRentItemDetail :AppCompatActivity() {
     private lateinit var itemImageView : ImageView
@@ -21,6 +28,7 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
     private lateinit var itemTipAmount: TextView
     private lateinit var itemStatus: TextView
     private lateinit var returnButton: Button
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.currently_renting_item_detail)
@@ -67,9 +75,13 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
             .load(item.itemImageUrl)
             .into(itemImageView)
 
-        returnButton = findViewById(R.id.editButton)
+        returnButton = findViewById(R.id.returnButton)
         returnButton.setOnClickListener {
-
+            GlobalScope.launch(Dispatchers.Main) {
+                setItemAvailable(item)
+                createReturn(item)
+                setRentalReturned(item)
+            }
         }
 
         /*
@@ -94,28 +106,51 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
         }
     }
 
-    suspend fun setRentalReturned() {
 
-    }
-    suspend fun setItemAvailable(item: Item) {
-        val updatedListing = Listing(
-            rental_price_per_day = item.itemPrice,
-            retail_price = item.itemRetailPrice,
-            item_name = item.itemTitle,
-            image_url = item.itemImageUrl,
-            description = item.itemDesc,
-            max_duration = item.itemMaxDuration,
-            lister = item.itemLister,
-            location = item.itemLocation,
-            available = true
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun createReturn(item: Item) {   //if you get bad request error, it might be because a return already exists with that rental id
+        val today = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val date = today.format(formatter)
+        val newReturn = Return(
+            rental_id = item.rental_id,
+            location_of_lister = item.itemListerLocation,
+            location_of_renter = item.itemRenterLocation,
+            tip_amount = item.itemTipAmount,
+            return_date = date
         )
+
         val apiService = RetrofitClient.instance.create(ApiService::class.java)
         try {
-            apiService.updateListing(item.itemListing.toString(), updatedListing)
+            apiService.createReturn(newReturn)
+
+            Log.d("API", "Return created successfully")
+        } catch (e: Exception) {
+            Log.e("API", "Return could not be created")
+            Log.e("API", "Error: ${e.message}", e)
+        }
+    }
+    suspend fun setItemAvailable(item: Item) {
+        val apiService = RetrofitClient.instance.create(ApiService::class.java)
+        try {
+            apiService.makeListingAvailable(item.itemListing.toString())
 
             Log.d("API", "Listing updated successfully")
         } catch (e: Exception) {
             Log.e("API", "Listing could not be updated")
+            Log.e("API", "Error: ${e.message}", e)
+        }
+    }
+
+    suspend fun setRentalReturned(item: Item) {
+        Log.d("huh", item.rental_id.toString())
+        val apiService = RetrofitClient.instance.create(ApiService::class.java)
+        try {
+            apiService.makeRentalReturned(item.rental_id.toString())
+
+            Log.d("API", "Rental updated successfully")
+        } catch (e: Exception) {
+            Log.e("API", "Rental could not be updated")
             Log.e("API", "Error: ${e.message}", e)
         }
     }

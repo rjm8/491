@@ -165,7 +165,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
 
             userList.forEach {userData ->
                 val jsonObject = JSONObject()
-                jsonObject.put("id", userData.rental_id)
+                jsonObject.put("rental_id", userData.rental_id)
                 jsonObject.put("itemListerLocation", userData.lister_location)
                 jsonObject.put("itemRenterLocation", userData.renter_location)
                 jsonObject.put("itemTipAmount", userData.tip_amount_for_driver)
