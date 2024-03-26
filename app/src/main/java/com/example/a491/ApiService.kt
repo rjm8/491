@@ -10,7 +10,7 @@ interface ApiService {
 
     @GET("listings/available")
     suspend fun getAllListedItemData(): List<ListedItemData>
-    @GET("listings/available/{userId}")
+    @GET("listings/by-user/{userId}")
     suspend fun getListedItemData(@Path("userId") userId: Int): List<ListedItemData>
 
     @GET("listings/others/{userId}/")
