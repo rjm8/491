@@ -64,7 +64,9 @@ class ListedItemDetail :AppCompatActivity() {
         * Posting Rental to Database
         */
         itemEdit.setOnClickListener {
-            Toast.makeText(this, "Edit Listing", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, EditListFormActivity::class.java)
+            intent.putExtra(ITEM_EXTRA, item)
+            startActivity(intent)
         }
 
 

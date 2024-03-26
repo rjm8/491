@@ -10,7 +10,7 @@ interface ApiService {
 
     @GET("listings/available")
     suspend fun getAllListedItemData(): List<ListedItemData>
-    @GET("listings/available/{userId}")
+    @GET("listings/by-user/{userId}")
     suspend fun getListedItemData(@Path("userId") userId: Int): List<ListedItemData>
 
     @GET("listings/others/{userId}/")
@@ -38,7 +38,7 @@ interface ApiService {
     suspend fun checkPassword(@Body credentials: Account): ReturnMessage
 
     @PUT("listings/{pk}/")
-    suspend fun updateListing(@Path("pk") listing_id: String?, @Body listing: Listing)
+    fun updateListing(@Path("pk") listing_id: String?, @Body listing: Listing): Call<Void>
 
     @POST("listings/make-available/{pk}/")
     suspend fun makeListingAvailable(@Path("pk") listing_id: String?)
