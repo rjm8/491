@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -73,7 +74,12 @@ class ItemRecyclerViewAdapter(
             } else if (listing) {
                 intent = Intent(context, ListedItemDetail::class.java)
             } else if (previously_rented){
-                intent = Intent(context, PreviouslyRentItemDetail::class.java)
+                if (item.itemAvailable) {
+                    intent = Intent(context, ItemDetail::class.java)
+                } else {
+                    Toast.makeText(context, "Item not available currently", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
             } else {
                 intent = Intent(context, ItemDetail::class.java)
             }

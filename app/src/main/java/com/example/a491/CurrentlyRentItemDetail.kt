@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -77,10 +78,13 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
 
         returnButton = findViewById(R.id.returnButton)
         returnButton.setOnClickListener {
+            val context = this
             GlobalScope.launch(Dispatchers.Main) {
                 setItemAvailable(item)
                 createReturn(item)
                 setRentalReturned(item)
+
+                context.startActivity(Intent(context, ProfileActivity::class.java))
             }
         }
 
@@ -139,6 +143,7 @@ class CurrentlyRentItemDetail :AppCompatActivity() {
         } catch (e: Exception) {
             Log.e("API", "Listing could not be updated")
             Log.e("API", "Error: ${e.message}", e)
+            //Toast.makeText(this, "Couldn't return item", Toast.LENGTH_SHORT).show()
         }
     }
 

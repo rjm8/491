@@ -184,6 +184,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
                 jsonObject.put("itemRenter", userData.renter)
                 jsonObject.put("itemListing", userData.listing)
                 jsonObject.put("itemDriver", userData.driver)
+                jsonObject.put("itemAvailable", userData.available)
 
 
                 results.put(jsonObject)
@@ -225,6 +226,10 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
                 jsonObject.put("itemRenter", userData.renter)
                 jsonObject.put("itemListing", userData.listing)
                 jsonObject.put("itemDriver", userData.driver)
+                jsonObject.put("itemAvailable", userData.available)
+                jsonObject.put("itemLocation", userData.lister_location)
+                jsonObject.put("itemMaxDuration", userData.max_duration)
+                jsonObject.put("itemRetailPrice", userData.retail_price)
 
                 results.put(jsonObject)
             }

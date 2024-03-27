@@ -19,7 +19,7 @@ interface ApiService {
     @GET("rentals/current/{userId}")
     suspend fun getCurrentRentItemData(@Path("userId") userId: Int): List<RentItemData>
 
-    @GET("rentals/previous/{userId}")
+    @GET("rentals/previous-rentals/{userId}")
     suspend fun getPreviousRentItemData(@Path("userId") userId: Int): List<RentItemData>
 
     @POST("listings/")
