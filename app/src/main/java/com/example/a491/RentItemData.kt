@@ -17,5 +17,6 @@ data class RentItemData(
     val lister: Int,
     val renter: Int,
     val listing: Int,
-    val driver: String
+    val driver: String,
+    val available: Boolean
 )

@@ -184,6 +184,7 @@ class ItemFetcher(passedItems: MutableList<Item>, passedAdapter: ItemRecyclerVie
                 jsonObject.put("itemRenter", userData.renter)
                 jsonObject.put("itemListing", userData.listing)
                 jsonObject.put("itemDriver", userData.driver)
+                jsonObject.put("itemAvailable", userData.available)
 
 
                 results.put(jsonObject)
